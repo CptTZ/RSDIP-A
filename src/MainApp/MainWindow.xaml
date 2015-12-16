@@ -1,0 +1,196 @@
+﻿<fluent:RibbonWindow x:Class="RsNoAMain.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        Title="遥感数字图像处理-A组" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen" MinHeight="400" MinWidth="600" Closing="RibbonWindow_Closing" Icon="Resources/gisorg.ico" >
+
+    <Grid x:Name="RootLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ribbon菜单 -->
+        <fluent:Ribbon Grid.Row="0">
+
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage Header="菜单" KeyTip="Z">
+                    <fluent:BackstageTabControl Height="Auto">
+                        <fluent:Button Name="ButtonAbout"
+                                       Header="关于"
+                                       Icon=".\Images\norm\32\help.png"
+                                       Click="ButtonAbout_Click" />
+                        <fluent:Button Name="ButtonExit"
+                                       Header="退出程序" 
+                                       Click="ButtonExit_Click" />
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+
+            <fluent:RibbonTabItem Header="文件" KeyTip="A">
+                <fluent:RibbonGroupBox Header="打开遥感图像" >
+                    <fluent:Button Name="OpenHeaderFile" KeyTip="1"
+                                   Header="选择HDR文件"
+                                   Icon=".\Images\norm\32\folder.png"
+                                   LargeIcon=".\Images\norm\64\folder.png" 
+                                   Click="OpenHeaderFile_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="HDR文件"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="特别注意选择后缀为.HDR的文件！
+                                              同时保证目录下有：同名无后缀的遥感数字图像文件！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button Name="ShowImg" KeyTip="2"
+                                   Header="显示图像" Click="ShowImg_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="显示图像"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="根据图像信息进行显示合成，可选择进行2%拉伸模式"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="图像合并工具" >
+                    <fluent:Button Name="MergeImage" KeyTip="3"
+                                   Header="合并BSQ图像"
+                                   Icon=".\Images\norm\32\merge.png"
+                                   LargeIcon=".\Images\norm\64\merge.png" 
+                                   Click="MergeImage_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像合并"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="特别注意仅支持BSQ文件合并！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+
+            </fluent:RibbonTabItem>
+
+
+            <fluent:RibbonTabItem Header="图像处理" KeyTip="B">
+                <fluent:RibbonGroupBox Header="格式转换" >
+                    <fluent:Button Name="ButtonConvert" KeyTip="1"
+                                   Header="开始转换"
+                                   Icon=".\Images\norm\32\transform.png"
+                                   LargeIcon=".\Images\norm\64\transform.png" 
+                                   Click="ButtonConvert_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="转换注意"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="不要玩坏程序！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+
+            <fluent:RibbonTabItem Header="图像度量值" KeyTip="C">
+                <fluent:RibbonGroupBox Header="直方图系列" KeyTip="a">
+                    <fluent:Button Name="ButtonHistogram" KeyTip="1"
+                                   Icon=".\Images\norm\32\histogram.png"
+                                   LargeIcon=".\Images\norm\64\histogram.png"
+                                   Header="一般直方图" Click="ButtonHistogram_Click" />
+                    <fluent:Button Name="ButtonAccHistogram" KeyTip="2"
+                                   Icon=".\Images\norm\32\histogram.png"
+                                   LargeIcon=".\Images\norm\64\histogram.png"
+                                   Header="累计直方图" Click="ButtonAccHistogram_Click" />
+                    <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
+                                   Icon=".\Images\norm\32\histogram.png"
+                                   LargeIcon=".\Images\norm\64\histogram.png"
+                                   Header="联合直方图" Click="ButtonUniHistogram_Click" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="联合直方图"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="计算两个波段的联合直方图"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                
+                <fluent:RibbonGroupBox Header="图像统计量" KeyTip="b">
+                    <fluent:Button Name="ButtonBasicStats" KeyTip="1"
+                                   Icon=".\Images\norm\32\statistics.png"
+                                   LargeIcon=".\Images\norm\32\statistics.png"
+                                   Header="基本统计量" Click="ButtonBasicStats_Click" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="基本统计量"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="包括平均值，方差，相关系数与协方差"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button Name="ButtonContrast" KeyTip="2"
+                                   Icon=".\Images\norm\32\contrast.png"
+                                   LargeIcon=".\Images\norm\64\contrast.png"
+                                   Header="对比度" Click="ButtonContrast_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="对比度"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="绘制对比度与波段关系图（临时）"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button Name="ButtonOif" KeyTip="3"
+                                   Header="OIF计算" Click="ButtonOif_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="各波段OIF计算"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="计算不同合成情况下OIF数值"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                
+                <fluent:RibbonGroupBox Header="纹理分析" KeyTip="c">
+                    <fluent:Button Name="ButtonGLCM" KeyTip="1"
+                                   Header="灰度共生矩阵" Click="ButtonGLCM_Click" />
+                    <fluent:Button Name="ButtonRangeFilt" KeyTip="2"
+                                   Header="极差纹理矩阵" Click="ButtonRangeFilt_Click" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+        </fluent:Ribbon>
+
+
+        <!-- 主界面 -->
+        <xcad:DockingManager Language="zh-CN" Name="DockingManager" Grid.Row="1">
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    
+                    <!-- 左侧界面 -->
+                    <xcad:LayoutAnchorablePane DockWidth="150">
+                        
+                    </xcad:LayoutAnchorablePane>
+
+                    <!-- 文档界面 -->
+                    <xcad:LayoutDocumentPaneGroup>
+                        <xcad:LayoutDocumentPane/>
+                    </xcad:LayoutDocumentPaneGroup>
+
+                </xcad:LayoutPanel>
+                
+                <!-- 右侧菜单栏 -->
+                <xcad:LayoutRoot.RightSide>
+                    <xcad:LayoutAnchorSide>
+                        <xcad:LayoutAnchorGroup x:Name="RightAnchorGroup">
+                            <xcad:LayoutAnchorable Title="说明" CanAutoHide="False" CanHide="False" CanClose="False">
+                                <StackPanel>
+                                    <TextBox Text="UI By 张宜弛" IsReadOnly="True"/>
+                                </StackPanel>
+                            </xcad:LayoutAnchorable>
+                        </xcad:LayoutAnchorGroup>
+                    </xcad:LayoutAnchorSide>
+                </xcad:LayoutRoot.RightSide>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+        
+        <!-- 底面状态栏 -->
+        <StatusBar Grid.Row="2" Name="StatusBar" MaxHeight="20" Foreground="White">
+            <TextBlock Name="StatusText" Text="Code By Gp.A" TextAlignment="Right"/>
+        </StatusBar>
+        
+    </Grid>
+
+</fluent:RibbonWindow>

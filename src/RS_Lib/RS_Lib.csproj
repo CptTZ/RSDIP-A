@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B3B29BF-3EFB-4161-A6BC-39D250476D24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RS_Lib</RootNamespace>
+    <AssemblyName>RS_Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="No4-Stretch+OIF\CalcOIF.cs" />
+    <Compile Include="No3-BasicInfo\Contrast.cs" />
+    <Compile Include="No4-Stretch+OIF\ContrastStretch.cs" />
+    <Compile Include="No7-Conv\Conv.cs" />
+    <Compile Include="No3-BasicInfo\GLCM.cs" />
+    <Compile Include="No3-BasicInfo\HistoData.cs" />
+    <Compile Include="No4-Stretch+OIF\HistoEqualization.cs" />
+    <Compile Include="No4-Stretch+OIF\HistoMatch.cs" />
+    <Compile Include="No3-BasicInfo\ImageStats.cs" />
+    <Compile Include="No6-KT+HSI\KT.cs" />
+    <Compile Include="No2-Interleave\MergeBSQPic.cs" />
+    <Compile Include="No2-Interleave\PicConvert.cs" />
+    <Compile Include="No3-BasicInfo\RangeFilt.cs" />
+    <Compile Include="No6-KT+HSI\RGBHSI.cs" />
+    <Compile Include="RsImage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="No4-Stretch+OIF\Stretch.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

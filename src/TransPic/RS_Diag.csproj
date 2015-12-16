@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29951351-AEBD-43FE-B954-2E5D44C4E433}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RS_Diag</RootNamespace>
+    <AssemblyName>RS_Diag</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\FileChoose.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Basic\FileChoose.Designer.cs">
+      <DependentUpon>FileChoose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\ShowLoadingThread.cs" />
+    <Compile Include="No3-BasicInfo\BasicStats.xaml.cs">
+      <DependentUpon>BasicStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No4-Stretch+OIF\ContrastStretch.xaml.cs">
+      <DependentUpon>ContrastStretch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No2-Interleave\ConvertWindow.xaml.cs">
+      <DependentUpon>ConvertWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No3-BasicInfo\GLCM.xaml.cs">
+      <DependentUpon>GLCM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No3-BasicInfo\Histogram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="No3-BasicInfo\Histogram.Designer.cs">
+      <DependentUpon>Histogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Basic\FileInfo.xaml.cs">
+      <DependentUpon>FileInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No4-Stretch+OIF\OIF.xaml.cs">
+      <DependentUpon>OIF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShowImage\ShowImage.xaml.cs">
+      <DependentUpon>ShowImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No3-BasicInfo\tmpContrast.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="No3-BasicInfo\tmpContrast.Designer.cs">
+      <DependentUpon>tmpContrast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="No2-Interleave\WindowMerge.xaml.cs">
+      <DependentUpon>WindowMerge.xaml</DependentUpon>
+    </Compile>
+    <Page Include="No3-BasicInfo\BasicStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="No4-Stretch+OIF\ContrastStretch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="No2-Interleave\ConvertWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="No3-BasicInfo\GLCM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Basic\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Basic\FileInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="No4-Stretch+OIF\OIF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowImage\ShowImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="No2-Interleave\WindowMerge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Basic\FileChoose.resx">
+      <DependentUpon>FileChoose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
+      <DependentUpon>Histogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No3-BasicInfo\tmpContrast.resx">
+      <DependentUpon>tmpContrast.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RS_Lib\RS_Lib.csproj">
+      <Project>{6B3B29BF-3EFB-4161-A6BC-39D250476D24}</Project>
+      <Name>RS_Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="No6-KT+HSI\" />
+    <Folder Include="No7-Conv\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

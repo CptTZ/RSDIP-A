@@ -1,0 +1,21 @@
+﻿<Window x:Class="RS_Diag.WindowMerge"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="合并图像" Height="120" Width="200" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonChoose" Content="要合并的(可拖放)" Margin="40,5,40,3.5" Click="buttonChoose_Click" AllowDrop="True" Drop="buttonChoose_Drop" />
+        <Label x:Name="label" Content="文件数：" Margin="45,0,78,0" Grid.Row="1"/>
+        <Label x:Name="labelNumOfFiles" Content="NA" Margin="95,0,45,0" Grid.Row="1"/>
+        <Button x:Name="buttonSaveMerge" Content="保存合并的文件" Margin="45,5" Grid.Row="2" Click="buttonSaveMerge_Click" IsEnabled="False"/>
+
+    </Grid>
+</Window>
