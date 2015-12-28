@@ -7,7 +7,7 @@ namespace RS_Lib
     /// <summary>
     /// 通用-遥感图像类
     /// </summary>
-    public class RsImage
+    public partial class RsImage
     {
         #region 属性和字段
         /// <summary>

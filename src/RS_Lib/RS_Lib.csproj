@@ -56,9 +56,10 @@
     <Compile Include="No2-Interleave\PicConvert.cs" />
     <Compile Include="No3-BasicInfo\RangeFilt.cs" />
     <Compile Include="No6-KT+HSI\RGBHSI.cs" />
-    <Compile Include="RsImage.cs" />
+    <Compile Include="RsImage\RsImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="No4-Stretch+OIF\Stretch.cs" />
+    <Compile Include="RsImage\RsImage_Alt.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

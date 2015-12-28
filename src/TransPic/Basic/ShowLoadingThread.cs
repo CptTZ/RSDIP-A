@@ -15,7 +15,7 @@ namespace RS_Diag
 
         private void NewThread()
         {
-            _thread = new Thread(InitWindow);
+            _thread = new Thread(InitWindow) {IsBackground = false};
             _thread.SetApartmentState(ApartmentState.STA);
         }
 
@@ -43,11 +43,12 @@ namespace RS_Diag
 
         public void Abort()
         {
-            if (_thread.ThreadState == ThreadState.Running)
-            {
-                _thread.IsBackground = true;
-                _thread.Abort();
-            }
+            if (_thread.ThreadState != ThreadState.Running) return;
+
+            // 避免计算过快，导致窗口未显示即关闭显示线程
+            Thread.Sleep(50);
+            _thread.IsBackground = true;
+            _thread.Abort();
         }
 
     }

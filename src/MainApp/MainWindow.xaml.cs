@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Windows.Threading;
 using Fluent;
 using RS_Diag;
 using MessageBox = System.Windows.MessageBox;
@@ -139,7 +133,7 @@ namespace RsNoAMain
             
             if (_image != null)
             {
-                _loading.Abort(); 
+                _loading.Abort();
                 _fChoose.AddByFilePath(ofd.FileName);
                 _dock.AddDocWpf(new RS_Diag.FileInfo(_image[_image.Count - 1]),
                     "图像信息: " + _image[_image.Count - 1].FileName);
