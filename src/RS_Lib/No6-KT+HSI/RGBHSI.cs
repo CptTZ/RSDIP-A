@@ -10,16 +10,48 @@ namespace RS_Lib
     /// </summary>
     public class RGBHSI
     {
-        internal struct Pixel
+        private struct Pixel
         {
             public double H, S, I;
         }
         
         public double[,,] HSIData { get; private set; }
 
-
         private readonly byte[] _band;
         private readonly byte[,,] _oriData;
+
+        public byte[,,] GetLinearStretch()
+        {
+            int h = HSIData.GetLength(1),
+                l = HSIData.GetLength(2);
+            byte[,,] res = new byte[3, h, l];
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    for (int k = 0; k < l; k++)
+                    {
+                        var tmp = HSIData[i, j, k]*255;
+
+                        if (tmp < 0)
+                        {
+                            res[i, j, k] = 0;
+                            continue;
+                        }
+                        if (tmp > 254.5)
+                        {
+                            res[i, j, k] = 255;
+                            continue;
+                        }
+
+                        res[i, j, k] = (byte) (tmp + 0.5);
+                    }
+                }
+            }
+
+            return res;
+        }
 
         public RGBHSI(byte[,,] d, byte[] b)
         {
@@ -28,6 +60,8 @@ namespace RS_Lib
             _oriData = d;
             _band = b;
             HSIData = new double[3, d.GetLength(1), d.GetLength(2)];
+
+            TransRGB();
         }
 
         private void TransRGB()

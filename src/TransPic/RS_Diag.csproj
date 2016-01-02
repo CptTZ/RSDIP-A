@@ -91,6 +91,15 @@
     <Compile Include="No4-Stretch+OIF\OIF.xaml.cs">
       <DependentUpon>OIF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No6-KT+HSI\KT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="No6-KT+HSI\KT.Designer.cs">
+      <DependentUpon>KT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="No6-KT+HSI\HSI.xaml.cs">
+      <DependentUpon>HSI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowImage\ShowImage.xaml.cs">
       <DependentUpon>ShowImage.xaml</DependentUpon>
     </Compile>
@@ -131,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="No6-KT+HSI\HSI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ShowImage\ShowImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +173,9 @@
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="No6-KT+HSI\KT.resx">
+      <DependentUpon>KT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -180,7 +196,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="No6-KT+HSI\" />
     <Folder Include="No7-Conv\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

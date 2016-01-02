@@ -5,57 +5,184 @@ using System.Text;
 
 namespace RS_Lib
 {
+    /// <summary>
+    /// KT变换至少要用float存储
+    /// </summary>
     public class KT
     {
 
-        /// <summary>
-        /// 缨帽变换系数
-        /// </summary>
-        /// <param name="m">0:Landsat4; 1:Landsat5; 2:Landsat7</param>
-        /// <returns></returns>
-        public static double[,] GetMatrixByType(byte m)
+        public double[,,] TransformedData { get; private set; }
+
+        private readonly byte[,,] _oriData;
+        private readonly byte _transType;
+        private readonly double[,] _transMatrix;
+        private double _minV, _maxV;
+
+        private byte LinearSt(double v, double k)
         {
-            double[,] matrix = new double[6, 6];
-            switch (m)
+            int d = (int) ((v - _minV)*k + 0.5);
+
+            if (d < 0)
+                return 0;
+            else if (d > 255)
+                return 255;
+            else
+                return (byte) d;
+        }
+
+        /// <summary>
+        /// 获取KT变换后线性拉伸的结果
+        /// </summary>
+        /// <returns></returns>
+        public byte[,,] GetLinearStretch()
+        {
+            double s = 255.0 / (_maxV - _minV);
+            int b = TransformedData.GetLength(0),
+                h = TransformedData.GetLength(1),
+                l = TransformedData.GetLength(2);
+
+            byte[,,] res = new byte[b, h, l];
+
+            for (int i = 0; i < b; i++)
             {
-                case 0:
-                    matrix[0, 0] = 0.3037; matrix[0, 1] = 0.2793; matrix[0, 2] = 0.4743; matrix[0, 3] = 0.5585; matrix[0, 4] = 0.5082; matrix[0, 5] = 0.1863;
-                    matrix[1, 0] = -0.2848; matrix[1, 1] = -0.2435; matrix[1, 2] = -0.5436; matrix[1, 3] = 0.7243; matrix[1, 4] = 0.0840; matrix[1, 5] = -0.1800;
-                    matrix[2, 0] = 0.1509; matrix[2, 1] = 0.1973; matrix[2, 2] = 0.3279; matrix[2, 3] = 0.3406; matrix[2, 4] = -0.7112; matrix[2, 5] = -0.4573;
-                    matrix[3, 0] = -0.8242; matrix[3, 1] = -0.0849; matrix[3, 2] = 0.4392; matrix[3, 3] = -0.0580; matrix[3, 4] = 0.2012; matrix[3, 5] = -0.2768;
-                    matrix[4, 0] = -0.3280; matrix[4, 1] = -0.0549; matrix[4, 2] = 0.1075; matrix[4, 3] = 0.1855; matrix[4, 4] = -0.4357; matrix[4, 5] = 0.8085;
-                    matrix[5, 0] = 0.1084; matrix[5, 1] = -0.9022; matrix[5, 2] = 0.4120; matrix[5, 3] = 0.0573; matrix[5, 4] = -0.0251; matrix[5, 5] = 0.0238;
-
-                    break;
-
-                case 1:
-                    matrix[0, 0] = 0.2909; matrix[0, 1] = 0.2493; matrix[0, 2] = 0.4806; matrix[0, 3] = 0.5568; matrix[0, 4] = 0.4438; matrix[0, 5] = 0.1706;
-                    matrix[1, 0] = -0.2728; matrix[1, 1] = -0.2174; matrix[1, 2] = -0.5508; matrix[1, 3] = 0.7221; matrix[1, 4] = 0.0733; matrix[1, 5] = -0.1648;
-                    matrix[2, 0] = 0.1446; matrix[2, 1] = 0.1761; matrix[2, 2] = 0.3322; matrix[2, 3] = 0.3396; matrix[2, 4] = -0.6210; matrix[2, 5] = -0.4186;
-                    matrix[3, 0] = -0.8461; matrix[3, 1] = -0.0731; matrix[3, 2] = 0.4640; matrix[3, 3] = -0.0032; matrix[3, 4] = 0.0492; matrix[3, 5] = -0.0119;
-                    for (int i = 4; i < 6; i++)
+                for (int j = 0; j < h; j++)
+                {
+                    for (int k = 0; k < l; k++)
                     {
-                        for (int j = 4; j < 6; j++)
-                            matrix[i, j] = 0;
+                        res[i, j, k] = LinearSt(s, TransformedData[i, j, k]);
                     }
-                    break;
-
-                case 2:
-                    matrix[0, 0] = 0.3561; matrix[0, 1] = 0.3972; matrix[0, 2] = 0.304; matrix[0, 3] = 0.6966; matrix[0, 4] = 0.2286; matrix[0, 5] = 0.1596;
-                    matrix[1, 0] = -0.3344; matrix[1, 1] = -0.3544; matrix[1, 2] = -0.4556; matrix[1, 3] = 0.6966; matrix[1, 4] = -0.0242; matrix[1, 5] = -0.2630;
-                    matrix[2, 0] = 0.2626; matrix[2, 1] = 0.2141; matrix[2, 2] = 0.0926; matrix[2, 3] = 0.0656; matrix[2, 4] = -0.7629; matrix[2, 5] = -0.5388;
-                    matrix[3, 0] = -0.0805; matrix[3, 1] = -0.0498; matrix[3, 2] = 0.1950; matrix[3, 3] = -0.1327; matrix[3, 4] = 0.5752; matrix[3, 5] = -0.7775;
-                    matrix[4, 0] = -0.7252; matrix[4, 1] = -0.0202; matrix[4, 2] = 0.6683; matrix[4, 3] = 0.0631; matrix[4, 4] = -0.1494; matrix[4, 5] = 0.0274;
-                    matrix[5, 0] = 0.4000; matrix[5, 1] = -0.8172; matrix[5, 2] = 0.3832; matrix[5, 3] = 0.0602; matrix[5, 4] = -0.1095; matrix[5, 5] = 0.0985;
-
-                    break;
-
-                default:
-                    return null;
+                }
             }
 
-            return matrix;
+            return res;
         }
+
+        private void GenerateNew()
+        {
+            _minV = Double.MaxValue;
+            _maxV = Double.MinValue;
+            int hang = _oriData.GetLength(1),
+                lie = _oriData.GetLength(2);
+
+            switch (this._transType)
+            {
+                case 4:
+                case 7:
+                    this.TransformedData =
+                        new double[6, hang, lie];
+                    break;
+                case 5:
+                    this.TransformedData=
+                        new double[4,hang,lie];
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 执行KT变换
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="t">4,5,7</param>
+        public KT(byte[,,] d,byte t)
+        {
+            if (d.GetLength(0) != 7) 
+                throw new ArgumentException("请使用原始的Landsat系列图像！");
+
+            if (t != 4 || t != 5 || t != 7) 
+                throw new ArgumentException("变换类型不支持！");
+
+            this._transType = t;
+            this._oriData = d;
+            this._transMatrix = KT_Paras.GetMatrixByType(t);
+           
+            GenerateNew();
+            K_T_Transform();
+        }
+
+        private void K_T_Transform()
+        {
+            for (int i = 0; i < this._oriData.GetLength(1); i++)
+            {
+                for (int j = 0; j < this._oriData.GetLength(2); j++)
+                {
+                    var result = MatBy(this._transMatrix, GetDataByRowCol(i, j));
+                    AddR(result);
+                    SaveData(result, i, j);
+                }
+            }
+        }
+
+        private void SaveData(double[,] d,int x,int y)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                TransformedData[i, x, y] = d[i, 0];
+                _maxV = d[i, 0] > _maxV ? d[i, 0] : _maxV;
+                _minV = d[i, 0] < _minV ? d[i, 0] : _minV;
+            }
+            if (this._transType != 5)
+            {
+                for (int i = 4; i < 6; i++)
+                {
+                    TransformedData[i, x, y] = d[i, 0];
+                    _maxV = d[i, 0] > _maxV ? d[i, 0] : _maxV;
+                    _minV = d[i, 0] < _minV ? d[i, 0] : _minV;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Landsat5-加常数项
+        /// </summary>
+        private void AddR(double[,] ds)
+        {
+            if (this._transType != 5) return;
+
+            ds[0, 0] += 10.3695;
+            ds[1, 0] += (-0.731);
+            ds[2, 0] += (-3.3828);
+            ds[3, 0] += 0.7879;
+        }
+
+        private double[,] GetDataByRowCol(int x, int y)
+        {
+            double[,] res = new double[6, 1];
+            res[0, 0] = this._oriData[0, x, y];
+            res[1, 0] = this._oriData[1, x, y];
+            res[2, 0] = this._oriData[2, x, y];
+            res[3, 0] = this._oriData[3, x, y];
+            res[4, 0] = this._oriData[4, x, y];
+            res[5, 0] = this._oriData[6, x, y];
+
+            return res;
+        }
+
+        /// <summary>
+        /// 矩阵相乘
+        /// </summary>
+        /// <param name="left">左</param>
+        /// <param name="right">右</param>
+        /// <returns></returns>
+        private double[,] MatBy(double[,] left, double[,] right)
+        {
+            if (left.GetLength(1) != right.GetLength(0))
+                throw new ArgumentException("矩阵不可乘！");
+
+            double[,] result = new double[left.GetLength(0), right.GetLength(1)];
+
+            for (int i = 0; i < left.GetLength(0); i++)
+            {
+                for (int j = 0; j < right.GetLength(1); j++)
+                {
+                    for (int k = 0; k < left.GetLength(1); k++)
+                    {
+                        result[i, j] += left[i, k] * right[k, j];
+                    }
+                }
+            }
+
+            return result;
+        } 
 
     }
 }

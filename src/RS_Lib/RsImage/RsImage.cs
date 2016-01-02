@@ -56,7 +56,20 @@ namespace RS_Lib
         /// <returns></returns>
         public byte[, ,] GetPicData()
         {
-            return _picData;
+            byte[,,] res = new byte[_picData.GetLength(0), _picData.GetLength(1), _picData.GetLength(2)];
+
+            for (int i = 0; i < _picData.GetLength(0); i++)
+            {
+                for (int j = 0; j < _picData.GetLength(1); j++)
+                {
+                    for (int k = 0; k < _picData.GetLength(2); k++)
+                    {
+                        res[i, j, k] = _picData[i, j, k];
+                    }
+                }
+            }
+
+            return res;
         }
 
         /// <summary>

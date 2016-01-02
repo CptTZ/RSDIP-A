@@ -150,10 +150,9 @@ namespace RsNoAMain
         {
             if (!CheckImage()) return;
 
-            _dock.AddDocWpf(new RS_Diag.ShowImage(_image[_fChoose.ChoosedFile]),
+            _dock.AddDocWpf(new RS_Diag.ShowImage(_image[_fChoose.ChoosedFile]), 
                 "图片合成: " + _image[_fChoose.ChoosedFile].FileName);
         }
         
-
     }
 }
