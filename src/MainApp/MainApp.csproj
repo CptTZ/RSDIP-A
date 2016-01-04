@@ -216,7 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RS_Lib\RS_Lib.csproj">
-      <Project>{6B3B29BF-3EFB-4161-A6BC-39D250476D24}</Project>
+      <Project>{6b3b29bf-3efb-4161-a6bc-39d250476d24}</Project>
       <Name>RS_Lib</Name>
     </ProjectReference>
     <ProjectReference Include="..\TransPic\RS_Diag.csproj">

@@ -13,7 +13,7 @@ namespace AlgTest
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             byte[,] data = { { 1, 2, 4 }, { 4, 3, 5 }, { 5, 3, 6 } };

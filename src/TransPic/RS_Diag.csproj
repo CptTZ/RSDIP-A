@@ -91,14 +91,11 @@
     <Compile Include="No4-Stretch+OIF\OIF.xaml.cs">
       <DependentUpon>OIF.xaml</DependentUpon>
     </Compile>
-    <Compile Include="No6-KT+HSI\KT.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="No6-KT+HSI\KT.Designer.cs">
-      <DependentUpon>KT.cs</DependentUpon>
-    </Compile>
     <Compile Include="No6-KT+HSI\HSI.xaml.cs">
       <DependentUpon>HSI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No6-KT+HSI\KT.xaml.cs">
+      <DependentUpon>KT.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowImage\ShowImage.xaml.cs">
       <DependentUpon>ShowImage.xaml</DependentUpon>
@@ -144,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="No6-KT+HSI\KT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ShowImage\ShowImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,9 +173,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="No6-KT+HSI\KT.resx">
-      <DependentUpon>KT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

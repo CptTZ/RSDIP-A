@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RS_Diag.HSI" Name="ImgWindow"
+﻿<UserControl x:Class="RS_Diag.KT" Name="ImgWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,21 +18,18 @@
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <Label Content="红色波段" Margin="0,20,0,0"/>
-            <ComboBox Name="red" Margin="3,0,10,15" IsReadOnly="True"/>
-            <Label Content="绿色波段" />
-            <ComboBox Name="green" Margin="3,0,10,15" IsReadOnly="True"/>
-            <Label Content="蓝色波段" />
-            <ComboBox Name="blue" Margin="3,0,10,10" IsReadOnly="True"/>
+            <Label Content="原始图像类型" Margin="0,20,0,0"/>
+            <ComboBox Name="OriType" Margin="3,0,10,3" IsReadOnly="True"/>
+            <Label Content="分量选择" Margin="0,3,0,0"/>
+            <ComboBox Name="LayerChoice" Margin="3,0,10,15" IsReadOnly="True" SelectionChanged="LayerChoice_SelectionChanged"/>
 
-            <Button Margin="3,5,10,3" Content="生成HSI" Click="Button_Click"/>
-            <ComboBox Name="HSIChoose" Margin="3,3,10,2" IsReadOnly="True" SelectionChanged="HSIChoose_SelectionChanged"/>
-            <Button Margin="3,5,10,3" Content="2%拉伸" Click="P2S_Click"/>
-            <Button Margin="3,2,10,3" Content="保存图像" Click="ButtonSav_Click" />
+            <Button Margin="3,5,10,3" Content="K-T变换" Click="Button_Click"/>
+            <Button Margin="3,3,10,3" Content="2%拉伸" Click="P2S_Click"/>
+            <Button Margin="3,3,10,3" Content="保存图像" Click="ButtonSav_Click" />
         </StackPanel>
 
         <Label Grid.Row="0" Grid.Column="1"
-               Content="提示：请选择RGB波段进行HSI显示！" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+               Content="提示：可以使用鼠标对图片进行放大缩小平移等动作！" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         
         <Border Name="border" ClipToBounds="True" Grid.Row="1" Grid.Column="1">
             <Image Margin="5,3,5,5" Name="RsImage" SnapsToDevicePixels="True" />

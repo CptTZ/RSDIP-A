@@ -69,13 +69,20 @@
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
                 
-                <fluent:RibbonGroupBox Header="HSI显示">
+                <fluent:RibbonGroupBox Header="图像变换">
                     <fluent:Button KeyTip="1"
                                    Header="HSI显示图像" Click="HSI_Click">
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像HSI显示"
                                               Image=".\Images\norm\64\help.png"
                                               Text="很好用！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button KeyTip="2"
+                                   Header="缨帽变换" Click="KT_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感Landsat图像的缨帽变换"
+                                Image=".\Images\norm\64\help.png" Text="很好用！" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>

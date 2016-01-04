@@ -16,11 +16,11 @@ namespace RS_Lib
         private readonly byte[,,] _oriData;
         private readonly byte _transType;
         private readonly double[,] _transMatrix;
-        private double _minV, _maxV;
+        private double[] _minV, _maxV;
 
-        private byte LinearSt(double v, double k)
+        private byte LinearSt(int i, double k, double v)
         {
-            int d = (int) ((v - _minV)*k + 0.5);
+            int d = (int) ((v - _minV[i])*k + 0.5);
 
             if (d < 0)
                 return 0;
@@ -36,7 +36,6 @@ namespace RS_Lib
         /// <returns></returns>
         public byte[,,] GetLinearStretch()
         {
-            double s = 255.0 / (_maxV - _minV);
             int b = TransformedData.GetLength(0),
                 h = TransformedData.GetLength(1),
                 l = TransformedData.GetLength(2);
@@ -45,11 +44,12 @@ namespace RS_Lib
 
             for (int i = 0; i < b; i++)
             {
+                double s = 255.0 / (_maxV[i] - _minV[i]);
                 for (int j = 0; j < h; j++)
                 {
                     for (int k = 0; k < l; k++)
                     {
-                        res[i, j, k] = LinearSt(s, TransformedData[i, j, k]);
+                        res[i, j, k] = LinearSt(i, s, TransformedData[i, j, k]);
                     }
                 }
             }
@@ -59,8 +59,6 @@ namespace RS_Lib
 
         private void GenerateNew()
         {
-            _minV = Double.MaxValue;
-            _maxV = Double.MinValue;
             int hang = _oriData.GetLength(1),
                 lie = _oriData.GetLength(2);
 
@@ -70,12 +68,23 @@ namespace RS_Lib
                 case 7:
                     this.TransformedData =
                         new double[6, hang, lie];
+                    this._minV = new double[6];
+                    this._maxV = new double[6];
                     break;
                 case 5:
-                    this.TransformedData=
-                        new double[4,hang,lie];
+                    this.TransformedData =
+                        new double[4, hang, lie];
+                    this._minV = new double[4];
+                    this._maxV = new double[4];
                     break;
             }
+
+            for (int i = 0; i < _minV.Length; i++)
+            {
+                _minV[i] = double.MaxValue;
+                _maxV[i] = double.MinValue;
+            }
+
         }
 
         /// <summary>
@@ -88,7 +97,7 @@ namespace RS_Lib
             if (d.GetLength(0) != 7) 
                 throw new ArgumentException("请使用原始的Landsat系列图像！");
 
-            if (t != 4 || t != 5 || t != 7) 
+            if (t != 4 && t != 5 && t != 7) 
                 throw new ArgumentException("变换类型不支持！");
 
             this._transType = t;
@@ -117,16 +126,16 @@ namespace RS_Lib
             for (int i = 0; i < 4; i++)
             {
                 TransformedData[i, x, y] = d[i, 0];
-                _maxV = d[i, 0] > _maxV ? d[i, 0] : _maxV;
-                _minV = d[i, 0] < _minV ? d[i, 0] : _minV;
+                _maxV[i] = d[i, 0] > _maxV[i] ? d[i, 0] : _maxV[i];
+                _minV[i] = d[i, 0] < _minV[i] ? d[i, 0] : _minV[i];
             }
             if (this._transType != 5)
             {
                 for (int i = 4; i < 6; i++)
                 {
                     TransformedData[i, x, y] = d[i, 0];
-                    _maxV = d[i, 0] > _maxV ? d[i, 0] : _maxV;
-                    _minV = d[i, 0] < _minV ? d[i, 0] : _minV;
+                    _maxV[i] = d[i, 0] > _maxV[i] ? d[i, 0] : _maxV[i];
+                    _minV[i] = d[i, 0] < _minV[i] ? d[i, 0] : _minV[i];
                 }
             }
         }
