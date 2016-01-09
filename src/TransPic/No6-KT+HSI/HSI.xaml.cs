@@ -243,24 +243,22 @@ namespace RS_Diag
         private void P2S_Click(object sender, RoutedEventArgs e)
         {
             if (_final == null) return;
-            
+            if (HSIChoose.SelectedIndex == 3) return; 
+
             _loading.Start();
-            byte[,,] img = new byte[3, _final.GetLength(1), _final.GetLength(2)];
+            byte[,,] img = new byte[1, _final.GetLength(1), _final.GetLength(2)];
+            
+            RS_Lib.Stretch sth = new RS_Lib.Stretch(_final, HSIChoose.SelectedIndex);
 
-            for (int i = 0; i < 3; i++)
+            for (int j = 0; j < img.GetLength(1); j++)
             {
-                RS_Lib.Stretch sth = new RS_Lib.Stretch(_final, i);
-
-                for (int j = 0; j < img.GetLength(1); j++)
+                for (int k = 0; k < img.GetLength(2); k++)
                 {
-                    for (int k = 0; k < img.GetLength(2); k++)
-                    {
-                        img[i, j, k] = sth.StretchedBandData[j, k];
-                    }
+                    img[0, j, k] = sth.StretchedBandData[j, k];
                 }
             }
 
-            MakeImage(img);
+            MakeSingleImage(img, 0);
             _loading.Abort();
         }
     }

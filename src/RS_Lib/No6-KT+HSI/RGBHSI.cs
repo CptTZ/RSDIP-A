@@ -87,15 +87,44 @@ namespace RS_Lib
             R = R / 255;
             G = G / 255;
             B = B / 255;
+            
+            double min = Math.Min(Math.Min(R, G), B),
+                max = Math.Max(Math.Max(R, G), B),
+                dt = max - min;
 
-            double theta = Math.Acos(0.5 * ((R - G) + (R - B)) / Math.Sqrt((R - G) * (R - G) + (R - B) * (G - B))) / (2 * Math.PI);
+            Pixel px = new Pixel {I = max};
 
-            return new Pixel
+            // max!=0
+            if (Math.Abs(max) > 1e-9)
             {
-                H = (B <= G) ? theta : (1 - theta),
-                S = 1 - 3 * Math.Min(Math.Min(R, G), B) / (R + G + B),
-                I = (R + G + B) / 3
-            }; 
+                px.S = dt/max;
+            }
+            else
+            {
+                // I无法计算
+                px.S = 0;
+                px.H = -1;
+                return px;
+            }
+
+            if (Math.Abs(R - max) < 1e-9)
+            {
+                px.H = (G - B)/dt;
+            }
+            else if(Math.Abs(G - max) < 1e-9)
+            {
+                px.H = 2 + (B - R)/dt;
+            }
+            else
+            {
+                px.H = 4 + (R - G)/dt;
+            }
+
+            px.H *= 60;
+            if (px.H < 0)
+                px.H += 360;
+
+            return px;
         }
 
 
