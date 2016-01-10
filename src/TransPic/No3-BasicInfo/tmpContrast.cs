@@ -22,16 +22,21 @@ namespace RS_Diag
 
         private void tmpContrast_Load(object sender, EventArgs e)
         {
-            Series sr = new Series("对比度") {ChartType = SeriesChartType.Line};
-            Title t = new Title("1-7波段对比度")
+            Series sr = new Series("对比度")
+            {
+                ChartType = SeriesChartType.Spline,
+                IsValueShownAsLabel = true
+            };
+
+            Title t = new Title("1-" + _data.Length + "波段对比度")
             {
                 TextStyle = TextStyle.Shadow,
                 Font = new Font(new FontFamily("微软雅黑"), 15)
             };
 
-            for (int i = 0; i < _data.Length; i++)
+            for (int i = 1; i <= _data.Length; i++)
             {
-                sr.Points.AddXY(i + 1, _data[i]);
+                sr.Points.AddXY(i, _data[i - 1]);
             }
 
             chart1.Series.Add(sr);

@@ -31,7 +31,11 @@ namespace RS_Diag
 
         public void MadeChart(Chart chart, int band, int[] chartData)
         {
-            Series series = new Series {ChartType = SeriesChartType.SplineArea};
+            Series series = new Series
+            {
+                ChartType = SeriesChartType.SplineArea
+            };
+
             Title title;
             switch (_type)
             {
