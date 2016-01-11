@@ -6,7 +6,7 @@ namespace RS_Lib
     /// </summary>
     public class Stretch
     {
-        private readonly double[] _posibilities;
+        private double[] _posibilities;
         private readonly byte[,] _bandData;
         
         public byte[,] StretchedBandData { get; private set; }
@@ -15,10 +15,9 @@ namespace RS_Lib
         /// 拉伸
         /// </summary>
         /// <param name="data">图像</param>
-        /// <param name="band">波段：1~n</param>
+        /// <param name="band">波段：0~n</param>
         public Stretch(byte[,,] data, int band)
         {
-            _posibilities = new double[256];
             _bandData = new byte[data.GetLength(1), data.GetLength(2)];
 
             for (int i = 0; i < data.GetLength(1); i++)
@@ -29,6 +28,23 @@ namespace RS_Lib
                 }
             }
 
+            PrepStretch();
+        }
+
+        /// <summary>
+        /// 拉伸
+        /// </summary>
+        /// <param name="data">图像</param>
+        public Stretch(byte[,] data)
+        {
+            this._bandData = data;
+            PrepStretch();
+        }
+
+        private void PrepStretch()
+        {
+            _posibilities = new double[256];
+
             HistoData hd = new HistoData(_bandData);
             // 累计直方图255处为总像素数
             long totalPixel = hd.GetAccHistogramData()[255];
@@ -36,7 +52,7 @@ namespace RS_Lib
             for (int i = 0; i < _posibilities.Length; i++)
             {
                 // 乘100化为百分比的值
-                _posibilities[i] = (100.0) * (hd.GetAccHistogramData()[i]) / (totalPixel * 1.0);
+                _posibilities[i] = (100.0)*(hd.GetAccHistogramData()[i])/(totalPixel*1.0);
             }
 
             StretchImg();

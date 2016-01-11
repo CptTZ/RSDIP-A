@@ -67,6 +67,9 @@
     <Compile Include="No3-BasicInfo\BasicStats.xaml.cs">
       <DependentUpon>BasicStats.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No3-BasicInfo\RangeFilt.xaml.cs">
+      <DependentUpon>RangeFilt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="No4-Stretch+OIF\ContrastStretch.xaml.cs">
       <DependentUpon>ContrastStretch.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     <Page Include="No3-BasicInfo\BasicStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="No3-BasicInfo\RangeFilt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="No4-Stretch+OIF\ContrastStretch.xaml">
       <SubType>Designer</SubType>

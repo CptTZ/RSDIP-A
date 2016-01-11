@@ -89,9 +89,9 @@ namespace RsNoAMain
         {
             if (!CheckImage()) return;
 
-            // TODO:界面完善
-
-
+            _loading.Start();
+            _dock.AddDocWpf(new RS_Diag.RangeFilt(_image[_fChoose.ChoosedFile]), "极差纹理矩阵: " + _image[_fChoose.ChoosedFile].FileName);
+            _loading.Abort();
         }
 
         /// <summary>
