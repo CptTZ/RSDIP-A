@@ -10,12 +10,20 @@ namespace RS_Lib
     /// </summary>
     public class Conv
     {
-        public double[,] ConvedData;
+        public double[,] ConvedData { get; private set; }
 
         private readonly byte[,] _oriData;
         private readonly double[,] _kernel;
+        private readonly double _valueIfNotInRange;
 
-        public Conv(byte[,,] d, int b, double[,] k)
+        /// <summary>
+        /// 卷积运算
+        /// </summary>
+        /// <param name="d">原始数据</param>
+        /// <param name="b">波段号</param>
+        /// <param name="k">卷积核</param>
+        /// <param name="vinir">出界时算什么</param>
+        public Conv(byte[,,] d, int b, double[,] k, double vinir = 0)
         {
             _oriData = new byte[d.GetLength(1), d.GetLength(2)];
 
@@ -27,17 +35,38 @@ namespace RS_Lib
                 }
             }
 
+            this._valueIfNotInRange = vinir;
+            if (k.GetLength(0) != k.GetLength(1))
+            {
+                throw new ArgumentException("卷积核必须为正方形！");
+            }
             this._kernel = k;
         }
 
-        public Conv(byte[,] d, double[,] k)
+        /// <summary>
+        /// 卷积运算
+        /// </summary>
+        /// <param name="d">原始数据+波段号</param>
+        /// <param name="k">卷积核</param>
+        /// <param name="vinir">出界时算什么</param>
+        public Conv(byte[,] d, double[,] k, double vinir)
         {
             this._oriData = d;
+            this._valueIfNotInRange = vinir;
+            if (k.GetLength(0) != k.GetLength(1))
+            {
+                throw new ArgumentException("卷积核必须为正方形！");
+            }
             this._kernel = k;
         }
        
-
-        private bool isInRange(int i, int j, double valueIfNotInRange=0)
+        /// <summary>
+        /// 数据是否在范围里
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
+        private bool isInRange(int i, int j)
         {
             return (i >= 0 && j >= 0 && i + 1 <= _oriData.GetLength(0) && j + 1 <= _oriData.GetLength(1));
         }

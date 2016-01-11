@@ -38,6 +38,7 @@ namespace RS_Lib
         public Stretch(byte[,] data)
         {
             this._bandData = data;
+
             PrepStretch();
         }
 

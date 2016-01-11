@@ -52,7 +52,14 @@
                                               Text="根据图像信息进行显示合成，可选择进行2%拉伸模式"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-
+                    <fluent:Button KeyTip="3"
+                                   Header="HSI显示图像" Click="HSI_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像HSI显示"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="很好用！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="图像合并工具" >
@@ -69,24 +76,6 @@
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
                 
-                <fluent:RibbonGroupBox Header="图像变换">
-                    <fluent:Button KeyTip="1"
-                                   Header="HSI显示图像" Click="HSI_Click">
-                        <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="遥感图像HSI显示"
-                                              Image=".\Images\norm\64\help.png"
-                                              Text="很好用！"/>
-                        </fluent:Button.ToolTip>
-                    </fluent:Button>
-                    <fluent:Button KeyTip="2"
-                                   Header="缨帽变换" Click="KT_Click">
-                        <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="遥感Landsat图像的缨帽变换"
-                                Image=".\Images\norm\64\help.png" Text="很好用！" />
-                        </fluent:Button.ToolTip>
-                    </fluent:Button>
-                </fluent:RibbonGroupBox>
-
             </fluent:RibbonTabItem>
 
 
@@ -105,6 +94,37 @@
                     </fluent:Button>
 
                 </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="图像变换">
+                    <fluent:Button KeyTip="1"
+                                   Header="缨帽变换" Click="KT_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感Landsat图像的缨帽变换"
+                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="图像拉伸">
+                    
+                    <fluent:Button KeyTip="1"
+                                   Header="对比度拉伸" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像的对比度拉伸"
+                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+
+                    <fluent:Button KeyTip="2"
+                                   Header="直方图均衡化" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像的直方图快速均衡化"
+                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+
+                </fluent:RibbonGroupBox>
+                
             </fluent:RibbonTabItem>
 
 
@@ -169,8 +189,11 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
+            <fluent:RibbonTabItem Header="图像平滑与锐化" KeyTip="D">
+                
+            </fluent:RibbonTabItem>
+            
         </fluent:Ribbon>
-
 
         <!-- 主界面 -->
         <xcad:DockingManager Language="zh-CN" Name="DockingManager" Grid.Row="1">

@@ -70,7 +70,7 @@ namespace RS_Lib
 
         private bool isInRange(int i, int j)
         {
-            return i >= 0 && j >= 0 && i + 1 <= _oriData.GetLength(0) && j + 1 <= _oriData.GetLength(1);
+            return i >= 0 && j >= 0 && i < _oriData.GetLength(0) && j < _oriData.GetLength(1);
         }
     }
 }
