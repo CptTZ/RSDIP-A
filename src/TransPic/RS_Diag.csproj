@@ -100,6 +100,12 @@
     <Compile Include="No6-KT+HSI\KT.xaml.cs">
       <DependentUpon>KT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No7-Conv\Smooth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No7-Conv\Smooth.Designer.cs">
+      <DependentUpon>Smooth.cs</DependentUpon>
+    </Compile>
     <Compile Include="No7-Conv\UserDef.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No7-Conv\Smooth.resx">
+      <DependentUpon>Smooth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="No7-Conv\UserDef.resx">
       <DependentUpon>UserDef.cs</DependentUpon>

@@ -53,4 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("23.1.02.3")]
 [assembly: AssemblyFileVersion("23.33.3.3")]
-[assembly: NeutralResourcesLanguage("zh-Hans", UltimateResourceFallbackLocation.Satellite)]
+[assembly: NeutralResourcesLanguage("")]

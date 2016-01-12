@@ -20,6 +20,9 @@ namespace RS_Lib
         public RsImage(string fn, byte[,,] data)
         {
             this.FileName = fn;
+            this._dataFilePath = "Memory";
+            this._headerFilePath = "Memory";
+
             DeepCopyData(data);
             ReadMetaData(data);
         }

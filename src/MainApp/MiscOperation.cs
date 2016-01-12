@@ -14,5 +14,7 @@ namespace RsNoAMain
             this._fChoose.AddByMemoryFileName(f);
         }
 
+        //TODO: 保存生成的图像
+
     }
 }

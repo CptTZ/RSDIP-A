@@ -62,6 +62,23 @@ namespace RS_Lib
             }
         }
 
+        public static string ShowKernel(int x, int y,int o)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    sb.Append(Math.Round(ZTFB(i - x/2, j - y/2, o), 4).ToString());
+                    sb.Append("\t ");
+                }
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
         /// <summary>
         /// 生成卷积核-书P163
         /// </summary>
@@ -73,7 +90,7 @@ namespace RS_Lib
             {
                 for (int j = 0; j < _y; j++)
                 {
-                    _kernel[i, j] = ZTFB(i - _x / 2, j - _y / 2);
+                    _kernel[i, j] = ZTFB(i - _x / 2, j - _y / 2, this._o);
                 }
             }
         }
@@ -82,11 +99,10 @@ namespace RS_Lib
         /// 正态分布计算
         /// </summary>
         /// <returns></returns>
-        private double ZTFB(int xx, int yy)
+        private static double ZTFB(int xx, int yy,int o)
         {
             double x = xx, y = yy;
-
-            return Math.Exp(-(x * x + y * y) / (2 * _o * _o)) ;
+            return Math.Exp(-(x * x + y * y) / (2 * o * o));
         }
 
         private void CheckSize(int kx, int ky, int o)

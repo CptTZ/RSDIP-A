@@ -29,7 +29,7 @@ namespace RS_Diag
             {
                 for (int j = 0; j < _lie; j++)
                 {
-                    kernData.Rows[i].Cells[j].Value = "1";
+                    kernData.Rows[i].Cells[j].Value = "1.0";
                 }
             }
         }
@@ -64,6 +64,8 @@ namespace RS_Diag
                     kernData.Rows.Add(dgr);
                 }
             }
+
+            Put1();
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
@@ -100,7 +102,7 @@ namespace RS_Diag
 
         private void tx_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '\b' || e.KeyChar == '-'))
+            if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == '\b' || e.KeyChar == '-'))
                 e.Handled = true;
         }
         #endregion

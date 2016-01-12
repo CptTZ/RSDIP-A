@@ -62,6 +62,7 @@
             // 
             // numLie
             // 
+            this.numLie.BackColor = System.Drawing.Color.White;
             this.numLie.Increment = new decimal(new int[] {
             2,
             0,
@@ -81,6 +82,7 @@
             // 
             // numHang
             // 
+            this.numHang.BackColor = System.Drawing.Color.White;
             this.numHang.Increment = new decimal(new int[] {
             2,
             0,
@@ -172,6 +174,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(520, 483);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
