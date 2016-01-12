@@ -20,7 +20,6 @@ namespace RS_Lib
 
         private void DoStretch(double scale, double offsite)
         {
-
             StretchedImg = new byte[_bandData.GetLength(0), _bandData.GetLength(1)];
 
             for (int i = 0; i < _bandData.GetLength(0); i++)

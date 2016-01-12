@@ -27,7 +27,7 @@ namespace AlgTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(Int32.MaxValue.ToString());
+            RS_Lib.GaussLow r = new GaussLow(null, 5, 5, 1);
         }
     }
 }

@@ -57,6 +57,10 @@
     <Compile Include="No2-Interleave\PicConvert.cs" />
     <Compile Include="No3-BasicInfo\RangeFilt.cs" />
     <Compile Include="No6-KT+HSI\RGBHSI.cs" />
+    <Compile Include="No7-Conv\GaussLow.cs" />
+    <Compile Include="No7-Conv\Grad.cs" />
+    <Compile Include="No7-Conv\Mean.cs" />
+    <Compile Include="No7-Conv\Median.cs" />
     <Compile Include="RsImage\RsImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="No4-Stretch+OIF\Stretch.cs" />

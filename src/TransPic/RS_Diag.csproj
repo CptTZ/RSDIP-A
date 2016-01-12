@@ -100,6 +100,12 @@
     <Compile Include="No6-KT+HSI\KT.xaml.cs">
       <DependentUpon>KT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No7-Conv\UserDef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No7-Conv\UserDef.Designer.cs">
+      <DependentUpon>UserDef.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShowImage\ShowImage.xaml.cs">
       <DependentUpon>ShowImage.xaml</DependentUpon>
     </Compile>
@@ -181,6 +187,9 @@
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="No7-Conv\UserDef.resx">
+      <DependentUpon>UserDef.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -200,9 +209,7 @@
       <Name>RS_Lib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="No7-Conv\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

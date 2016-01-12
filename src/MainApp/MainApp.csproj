@@ -107,6 +107,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MiscOperation.cs" />
     <Compile Include="Operation_2-4.cs" />
     <Compile Include="Operation_6-8.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

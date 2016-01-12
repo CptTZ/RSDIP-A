@@ -51,7 +51,7 @@ namespace RS_Lib
         /// <param name="d">原始数据+波段号</param>
         /// <param name="k">卷积核</param>
         /// <param name="vinir">出界时算什么</param>
-        public Conv(byte[,] d, double[,] k, double vinir)
+        public Conv(byte[,] d, double[,] k, double vinir = 0)
         {
             this._oriData = d;
             this._valueIfNotInRange = vinir;
@@ -129,6 +129,9 @@ namespace RS_Lib
                 }
             }
 
+            if (result < _resMin) _resMin = result;
+            if (result > _resMax) _resMax = result;
+
             return result;
         }
         
@@ -142,7 +145,7 @@ namespace RS_Lib
 
             if (kx < 3 || kx%2 == 0 || ky < 3 || ky%2 == 0)
             {
-                throw new ArgumentException("卷积核必须为奇数");
+                throw new ArgumentException("卷积核必须为奇数，且大于3");
             }
         }
 

@@ -180,7 +180,7 @@
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="对比度"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="绘制对比度与波段关系图（临时）"/>
+                                              Text="绘制对比度与波段关系图"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                     <fluent:Button Name="ButtonOif" KeyTip="3"
@@ -201,7 +201,38 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
-            <fluent:RibbonTabItem Header="图像平滑与锐化" KeyTip="D">
+            <fluent:RibbonTabItem Header="平滑·锐化·形态学" KeyTip="D">
+
+                <fluent:RibbonGroupBox Header="图像平滑与锐化" KeyTip="a">
+                    <fluent:Button Name="ButtonSmooth" KeyTip="1" Header="图像平滑" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="图像的平滑"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="掩膜平滑未完成"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button Name="ButtonSharp" KeyTip="1" Header="图像锐化" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="图像的锐化"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="三种方法"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                
+                <fluent:RibbonGroupBox Header="图像形态学处理" KeyTip="b">
+                    
+                </fluent:RibbonGroupBox>
+                
+                <fluent:RibbonGroupBox Header="其它" KeyTip="c">
+                    <fluent:Button Name="ButtonCustom" KeyTip="1" Header="用户自定义卷积核" Click="ButtonCustom_Click" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="用户自定义卷积核"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="可以不为正方形，不过必须为奇数"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
                 
             </fluent:RibbonTabItem>
             

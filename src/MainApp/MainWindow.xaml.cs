@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Fluent;
 using RS_Diag;
+using RS_Lib;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
@@ -160,6 +161,41 @@ namespace RsNoAMain
 
             _dock.AddDocWpf(new RS_Diag.FileInfo(_image[_fChoose.ChoosedFile]),
                     "图像信息: " + _image[_fChoose.ChoosedFile].FileName);
+        }
+
+        private void ButtonCustom_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckImage()) return;
+
+            var a = new RS_Diag.UserDef();
+            if (a.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            _loading.Start();
+
+            // 以下很慢……
+            var cho = _image[_fChoose.ChoosedFile];
+            var knl = a.Kernel;
+            RS_Lib.Conv[] c = new Conv[cho.BandsCount];
+            for (int i = 0; i < c.Length; i++)
+            {
+                c[i] = new Conv(cho.GetPicData(i + 1), knl);
+            }
+
+            byte[,,] tmp = new byte[cho.BandsCount, cho.Lines, cho.Samples];
+            for (int i = 0; i < tmp.GetLength(0); i++)
+            {
+                var tt = c[i].GetLinearStretch();
+                for (int j = 0; j < tmp.GetLength(1); j++)
+                {
+                    for (int k = 0; k < tmp.GetLength(2); k++)
+                    {
+                        tmp[i, j, k] = tt[j, k];
+                    }
+                }
+            }
+
+            AddNewPic(tmp, cho.FileName + "(自定义卷积核)");
+            _loading.Abort();
         }
     }
 }
