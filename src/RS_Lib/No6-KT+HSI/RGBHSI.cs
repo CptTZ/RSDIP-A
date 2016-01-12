@@ -19,33 +19,35 @@ namespace RS_Lib
 
         private readonly byte[] _band;
         private readonly byte[,,] _oriData;
+        private double[] _minV, _maxV;
+
+        private byte LinearSt(int i, double k, double v)
+        {
+            int d = (int)((v - _minV[i]) * k + 0.5);
+
+            if (d < 0)
+                return 0;
+            else if (d > 255)
+                return 255;
+            else
+                return (byte)d;
+        }
 
         public byte[,,] GetLinearStretch()
         {
             int h = HSIData.GetLength(1),
                 l = HSIData.GetLength(2);
+            
             byte[,,] res = new byte[3, h, l];
 
             for (int i = 0; i < 3; i++)
             {
+                double s = 255.0 / (_maxV[i] - _minV[i]);
                 for (int j = 0; j < h; j++)
                 {
                     for (int k = 0; k < l; k++)
                     {
-                        var tmp = HSIData[i, j, k]*255;
-
-                        if (tmp < 0)
-                        {
-                            res[i, j, k] = 0;
-                            continue;
-                        }
-                        if (tmp > 254.5)
-                        {
-                            res[i, j, k] = 255;
-                            continue;
-                        }
-
-                        res[i, j, k] = (byte) (tmp + 0.5);
+                        res[i, j, k] = LinearSt(i, s, HSIData[i, j, k]);
                     }
                 }
             }
@@ -61,7 +63,20 @@ namespace RS_Lib
             _band = b;
             HSIData = new double[3, d.GetLength(1), d.GetLength(2)];
 
+            InitMaxMin();
             TransRGB();
+        }
+
+        private void InitMaxMin()
+        {
+            _minV = new double[3];
+            _maxV = new double[3];
+
+            for (int i = 0; i < _minV.Length; i++)
+            {
+                _minV[i] = double.MaxValue;
+                _maxV[i] = double.MinValue;
+            }
         }
 
         private void TransRGB()
@@ -74,6 +89,13 @@ namespace RS_Lib
                         _oriData[_band[0], i, j],
                         _oriData[_band[1], i, j],
                         _oriData[_band[2], i, j]);
+
+                    if (_minV[0] > a.H) _minV[0] = a.H;
+                    if (_minV[1] > a.S) _minV[1] = a.S;
+                    if (_minV[2] > a.I) _minV[2] = a.I;
+                    if (_maxV[0] < a.H) _maxV[0] = a.H;
+                    if (_maxV[1] < a.S) _maxV[1] = a.S;
+                    if (_maxV[2] < a.I) _maxV[2] = a.I;
 
                     HSIData[0, i, j] = a.H;
                     HSIData[1, i, j] = a.S;

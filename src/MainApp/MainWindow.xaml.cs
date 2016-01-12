@@ -127,16 +127,16 @@ namespace RsNoAMain
             catch (Exception ex)
             {
                 MessageBox.Show("打开失败！\n" + ex.Message, "失败", MessageBoxButton.OK, MessageBoxImage.Error);
-                _loading.Abort();
                 return;
+            }
+            finally
+            {
+                _loading.Abort();
             }
             
             if (_image != null)
             {
-                _loading.Abort();
-                _fChoose.AddByFilePath(ofd.FileName);
-                _dock.AddDocWpf(new RS_Diag.FileInfo(_image[_image.Count - 1]),
-                    "图像信息: " + _image[_image.Count - 1].FileName);
+                _fChoose.AddByFilePath(_image[_image.Count - 1].GetFilePath());
             }
             
         }
@@ -153,6 +153,13 @@ namespace RsNoAMain
             _dock.AddDocWpf(new RS_Diag.ShowImage(_image[_fChoose.ChoosedFile]), 
                 "图片合成: " + _image[_fChoose.ChoosedFile].FileName);
         }
-        
+
+        private void ShowImgInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckImage()) return;
+
+            _dock.AddDocWpf(new RS_Diag.FileInfo(_image[_fChoose.ChoosedFile]),
+                    "图像信息: " + _image[_fChoose.ChoosedFile].FileName);
+        }
     }
 }

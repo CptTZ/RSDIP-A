@@ -243,6 +243,7 @@ namespace RS_Diag
         private void P2S_Click(object sender, RoutedEventArgs e)
         {
             if (_final == null) return;
+            if (HSIChoose.SelectedIndex == -1) return;
             if (HSIChoose.SelectedIndex == 3) return; 
 
             _loading.Start();

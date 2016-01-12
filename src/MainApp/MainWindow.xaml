@@ -44,22 +44,15 @@
                                               同时保证目录下有：同名无后缀的遥感数字图像文件！"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ShowImg" KeyTip="2"
-                                   Header="显示图像" Click="ShowImg_Click">
+                    <fluent:Button Name="ShowImgInfo" KeyTip="1"
+                                   Header="图像元信息" Click="ShowImgInfo_Click">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="显示图像"
+                            <fluent:ScreenTip Title="HDR文件"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="根据图像信息进行显示合成，可选择进行2%拉伸模式"/>
+                                              Text="查看最基本的图像信息"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button KeyTip="3"
-                                   Header="HSI显示图像" Click="HSI_Click">
-                        <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="遥感图像HSI显示"
-                                              Image=".\Images\norm\64\help.png"
-                                              Text="很好用！"/>
-                        </fluent:Button.ToolTip>
-                    </fluent:Button>
+
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="图像合并工具" >
@@ -72,6 +65,25 @@
                             <fluent:ScreenTip Title="遥感图像合并"
                                               Image=".\Images\norm\64\help.png"
                                               Text="特别注意仅支持BSQ文件合并！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                </fluent:RibbonGroupBox>
+                
+                <fluent:RibbonGroupBox Header="图像显示">
+                    <fluent:Button Name="ShowImg" KeyTip="2"
+                                   Header="RGB显示图像" Click="ShowImg_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="显示图像"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="根据图像信息进行显示合成，可选择进行2%拉伸模式"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button KeyTip="3"
+                                   Header="HSI显示图像" Click="HSI_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像HSI显示"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="HSI(HSV)显示"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
