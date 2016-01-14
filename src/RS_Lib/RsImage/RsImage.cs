@@ -205,11 +205,8 @@ namespace RS_Lib
 
         private void ReadMetaData()
         {
-            StreamReader headReader = null;
-
-            try
+            using (StreamReader headReader = new StreamReader(this._headerFilePath))
             {
-                headReader = new StreamReader(this._headerFilePath);
                 String metaLineData = null;
                 while ((metaLineData = headReader.ReadLine()) != null)
                 {
@@ -236,6 +233,8 @@ namespace RS_Lib
                     else if (metaLineData.Contains("data type"))
                     {
                         this.DataType = int.Parse(getDataAfterEqual(metaLineData));
+                        if (this.DataType != 1)
+                            throw new ArgumentException("不支持的数据类型");
                     }
                     else if (metaLineData.Contains("interleave"))
                     {
@@ -254,14 +253,9 @@ namespace RS_Lib
                     }
                 }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                headReader?.Close();
-            }
+
+            if (this.Samples == 0 | this.Lines == 0) 
+                throw new ArgumentException("文件错误！");
         }
 
         /// <summary>
@@ -269,12 +263,11 @@ namespace RS_Lib
         /// </summary>
         private void ReadPic()
         {
-            BinaryReader rsFileBinData = null;
-            try
+            using (BinaryReader rsFileBinData = new BinaryReader(new FileStream(
+                this._dataFilePath, FileMode.Open, FileAccess.Read))) 
             {
-                rsFileBinData = new BinaryReader(new FileStream(
-                    this._dataFilePath, FileMode.Open, FileAccess.Read));
                 rsFileBinData.BaseStream.Position = 0;
+
                 this._picData = new byte[BandsCount, Lines, Samples];
 
                 switch (Interleave)
@@ -295,13 +288,36 @@ namespace RS_Lib
                         return;
                 }
             }
-            catch (Exception)
+            
+        }
+
+        /// <summary>
+        /// 保存图像为BSQ
+        /// </summary>
+        /// <param name="savePath"></param>
+        public void SavePic(string savePath)
+        {
+            byte[] tmpNew = new byte[_picData.Length];
+            long count = 0;
+            for (int i = 0; i < _picData.GetLength(0); i++)
             {
-                throw;
+                for (int j = 0; j < _picData.GetLength(1); j++)
+                {
+                    for (int k = 0; k < _picData.GetLength(2); k++)
+                    {
+                        tmpNew[count++] = _picData[i, j, k];
+                    }
+                }
             }
-            finally
+
+            using (StreamWriter sw = new StreamWriter(savePath + ".HDR", false, Encoding.Default)) 
             {
-                rsFileBinData?.Close();
+                sw.Write(BuildMetaData("bsq"));
+            }
+
+            using (BinaryWriter bw = new BinaryWriter(new FileStream(savePath, FileMode.Create, FileAccess.Write))) 
+            {
+                bw.Write(tmpNew);
             }
         }
 

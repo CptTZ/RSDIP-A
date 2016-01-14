@@ -12,9 +12,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock HorizontalAlignment="Left" Margin="2,2,2,2" Grid.Row="0"
-                   Name="textBlock1" Text="图像已载入，请进行相关操作!" VerticalAlignment="Top" />
+                   Name="textBlock1" Text="图像已载入，请进行相关操作!" VerticalAlignment="Top" TextWrapping="Wrap" />
         
-        <Image Grid.Row="1" HorizontalAlignment="Left" 
-               Name="image1" Stretch="UniformToFill" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

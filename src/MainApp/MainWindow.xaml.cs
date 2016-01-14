@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Fluent;
+using Microsoft.Win32;
 using RS_Diag;
 using RS_Lib;
 using MessageBox = System.Windows.MessageBox;
@@ -60,6 +61,8 @@ namespace RsNoAMain
         private void ButtonExit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             _image.Clear();
+            _loading.Abort();
+
             System.Environment.Exit(0);
         }
 
@@ -117,29 +120,31 @@ namespace RsNoAMain
         /// </summary>
         private void OpenHeaderFile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog { Filter = "ENVI遥感数据头文件(*.HDR)|*.HDR" };
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "ENVI遥感数据头文件(*.HDR)|*.HDR;*.hdr|一般图像(*.jpg,*.bmp)|*.jpg;*.bmp"
+            };
+
             if (ofd.ShowDialog() != true) return;
             _loading.Start();
 
             try
             {
-                _image.Add(new RS_Lib.RsImage(ofd.FileName));
+                if (ofd.FilterIndex == 1)
+                    _image.Add(new RS_Lib.RsImage(ofd.FileName));
+                else if (ofd.FilterIndex == 2)
+                    _image.Add(new RS_Lib.RsImage(ofd.FileName, " 来自图像文件"));
             }
             catch (Exception ex)
             {
+                _loading.Abort();
                 MessageBox.Show("打开失败！\n" + ex.Message, "失败", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            finally
-            {
-                _loading.Abort();
-            }
+
+            _loading.Abort();
             
-            if (_image != null)
-            {
-                _fChoose.AddByFilePath(_image[_image.Count - 1].GetFilePath());
-            }
-            
+            _fChoose.AddByFilePath(_image[_image.Count - 1].GetFilePath());
         }
         
         /// <summary>
@@ -163,5 +168,22 @@ namespace RsNoAMain
                     "图像信息: " + _image[_fChoose.ChoosedFile].FileName);
         }
 
+        private void SaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckImage()) return;
+
+            SaveFileDialog sfd = new SaveFileDialog {Filter = "图片名(*)|*.*"};
+            if (sfd.ShowDialog() != true) return;
+
+            try
+            {
+                _image[_fChoose.ChoosedFile].SavePic(sfd.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("保存失败！\n" + ex.Message, "失败", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+        }
     }
 }

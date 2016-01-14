@@ -31,17 +31,24 @@
             </fluent:Ribbon.Menu>
 
             <fluent:RibbonTabItem Header="文件" KeyTip="A">
-                <fluent:RibbonGroupBox Header="打开遥感图像" >
+                <fluent:RibbonGroupBox Header="文件操作" >
                     <fluent:Button Name="OpenHeaderFile" KeyTip="1"
-                                   Header="选择HDR文件"
+                                   Header="打开图像文件"
                                    Icon=".\Images\norm\32\folder.png"
                                    LargeIcon=".\Images\norm\64\folder.png" 
                                    Click="OpenHeaderFile_Click">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="HDR文件"
+                            <fluent:ScreenTip Title="图像文件"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="特别注意选择后缀为.HDR的文件！
-                                              同时保证目录下有：同名无后缀的遥感数字图像文件！"/>
+                                              Text="包括HDR或者JPG/BMP文件(后者只支持彩色)"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
+                    <fluent:Button Name="SaveFile" KeyTip="1"
+                                   Header="保存图像" Click="SaveFile_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="保存为HDR"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="格式为ENVI Header格式"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                     <fluent:Button Name="ShowImgInfo" KeyTip="1"

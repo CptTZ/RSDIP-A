@@ -21,11 +21,19 @@ namespace RS_Diag
         {
             InitializeComponent();
             _img = p;
-            textBlock1.Text += "\n图像文件地址：" + p.GetFilePath();
-            textBlock1.Text += "\n波段数：" + p.BandsCount;
-            textBlock1.Text += "\n图像说明：" + p.Description;
-            textBlock1.Text += "\n图像格式：" + p.Interleave;
+            StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine("图像元信息如下");
+            sb.AppendLine();
+            sb.AppendLine("图像文件地址：" + p.GetFilePath());
+            sb.AppendLine("波段数：" + p.BandsCount);
+            sb.AppendLine("图像行数：" + p.Lines);
+            sb.AppendLine("图像列数：" + p.Samples);
+            sb.AppendLine("图像格式：" + p.Interleave);
+            sb.AppendLine();
+            sb.AppendLine("图像说明：" + p.Description);
+            
+            textBlock1.Text = sb.ToString();
         }
 
     }
