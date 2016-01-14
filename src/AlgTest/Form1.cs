@@ -22,7 +22,6 @@ namespace AlgTest
 
             byte[,] ttt = new byte[7, 7] { { 0, 1, 2, 3, 0, 1, 2 }, { 1, 2, 3, 0, 1, 2, 3 }, { 2, 3, 0, 1, 2, 3, 0 }, { 3, 0, 1, 2, 3, 0, 1 }, { 0, 1, 2, 3, 0, 1, 2 }, { 1, 2, 3, 0, 1, 2, 3 }, { 2, 3, 0, 1, 2, 3, 0 } };
             GLCM g = new GLCM(ttt, 1, 0);
-            g.GetGLCM();
         }
 
         private void Form1_Load(object sender, EventArgs e)

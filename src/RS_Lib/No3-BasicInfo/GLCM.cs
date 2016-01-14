@@ -6,7 +6,10 @@ namespace RS_Lib
     /// </summary>
     public class GLCM
     {
+        public byte[,] GLCMdata { get; private set; }
+
         private readonly int _dx, _dy, _hang, _lie;
+        private double _max, _min;
         private readonly byte[,] _imgData;
         // 8位量化:0-255
         private readonly double[,] _glcm = new double[256, 256];
@@ -19,13 +22,17 @@ namespace RS_Lib
         /// <param name="dy">偏移y</param>
         public GLCM(byte[,] r, int dx, int dy)
         {
+            _max = double.MinValue;
+            _min = double.MaxValue;
             _imgData = r;
             _hang = r.GetLength(0);
             _lie = r.GetLength(1);
             _dx = dx;
             _dy = dy;
+            GLCMdata = new byte[256, 256];
 
             CalcGLCM();
+            Process();
         }
 
         private void CalcGLCM()
@@ -48,7 +55,11 @@ namespace RS_Lib
             {
                 for (int j = 0; j < tmp.GetLength(1); j++)
                 {
-                    _glcm[i, j] = tmp[i, j]*255.0/count;
+                    var r = tmp[i, j] * 255.0 / count;
+                    _glcm[i, j] = r;
+
+                    if (r < _min) _min = r;
+                    if (r > _max) _max = r;
                 }
             }
 
@@ -65,9 +76,32 @@ namespace RS_Lib
             return (x + _dx < _hang) && (y + _dy < _lie);
         }
 
-        public double[,] GetGLCM()
+        /// <summary>
+        /// 线性拉伸结果
+        /// </summary>
+        private void Process()
         {
-            return _glcm;
+            double s = 255.0 / (_max - _min);
+
+            for (int i = 0; i < 256; i++)
+            {
+                for (int j = 0; j < 256; j++)
+                {
+                    GLCMdata[i, j] = LinearSt(s, _glcm[i, j]);
+                }
+            }
+        }
+
+        private byte LinearSt(double k, double v)
+        {
+            int d = (int)((v - _min) * k + 0.5);
+
+            if (d < 0)
+                return 0;
+            else if (d > 255)
+                return 255;
+            else
+                return (byte)d;
         }
 
     }

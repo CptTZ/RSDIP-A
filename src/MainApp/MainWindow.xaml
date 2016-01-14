@@ -118,20 +118,27 @@
                                 Image=".\Images\norm\64\help.png" Text="很好用！" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
+                    <fluent:Button KeyTip="2" Name="BandMath"
+                                   Header="波段计算器" Click="BandMath_Click" >
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="波段计算器"
+                                Image=".\Images\norm\64\help.png" Text="支持大部分表达式" />
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="图像拉伸">
                     
-                    <fluent:Button KeyTip="1"
-                                   Header="对比度拉伸" >
+                    <fluent:Button KeyTip="5" Name="ButtonConSt"
+                                   Header="对比度拉伸" Click="ButtonConSt_Click"  >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像的对比度拉伸"
                                 Image=".\Images\norm\64\help.png" Text="很好用！" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
 
-                    <fluent:Button KeyTip="2"
-                                   Header="直方图均衡化" >
+                    <fluent:Button KeyTip="6"
+                                   Header="直方图均衡化" Click="Button_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像的直方图快速均衡化"
                                 Image=".\Images\norm\64\help.png" Text="很好用！" />
@@ -156,7 +163,7 @@
                     <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
                                    Icon=".\Images\norm\32\histogram.png"
                                    LargeIcon=".\Images\norm\64\histogram.png"
-                                   Header="联合直方图" Click="ButtonUniHistogram_Click" >
+                                   Header="直方图规定化" Click="ButtonUniHistogram_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="联合直方图"
                                               Image=".\Images\norm\64\help.png"
@@ -204,7 +211,7 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
-            <fluent:RibbonTabItem Header="平滑·锐化·形态学" KeyTip="D">
+            <fluent:RibbonTabItem Header="平滑锐化" KeyTip="D">
 
                 <fluent:RibbonGroupBox Header="图像平滑与锐化" KeyTip="a">
                     <fluent:Button Name="ButtonSmooth" KeyTip="1" Header="图像平滑" Click="ButtonSmooth_Click" >
@@ -222,11 +229,7 @@
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
-                
-                <fluent:RibbonGroupBox Header="图像形态学处理" KeyTip="b">
-                    
-                </fluent:RibbonGroupBox>
-                
+
                 <fluent:RibbonGroupBox Header="其它" KeyTip="c">
                     <fluent:Button Name="ButtonCustom" KeyTip="1" Header="用户自定义卷积核" Click="ButtonCustom_Click" >
                         <fluent:Button.ToolTip>

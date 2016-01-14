@@ -12,6 +12,40 @@ namespace RsNoAMain
     public partial class MainWindow
     {
 
+        private void BandMath_Click(object sender, RoutedEventArgs e)
+        {
+            var a = new RS_Diag.BandMath(_image);
+            if (a.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            try
+            {
+                _loading.Start();
+                var d = new RS_Lib.BandMath(a.StateMent, a.CtrlStr.ToArray(), a.Data.ToArray()).CalculatedResult;
+
+                byte[,,] tmp = new byte[1, d.GetLength(0), d.GetLength(1)];
+
+                for (int i = 0; i < d.GetLength(0); i++)
+                {
+                    for (int j = 0; j < d.GetLength(1); j++)
+                    {
+                        tmp[0, i, j] = d[i, j];
+                    }
+                }
+
+                AddNewPic(tmp, "Band Math结果", false);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "TonyZ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                _loading.Abort();
+            }
+
+        }
+
         private void HSI_Click(object sender, RoutedEventArgs e)
         {
             if (!CheckImage()) return;

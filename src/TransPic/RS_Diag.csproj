@@ -70,17 +70,17 @@
     <Compile Include="No3-BasicInfo\BasicStats.xaml.cs">
       <DependentUpon>BasicStats.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No3-BasicInfo\GLCM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="No3-BasicInfo\GLCM.Designer.cs">
+      <DependentUpon>GLCM.cs</DependentUpon>
+    </Compile>
     <Compile Include="No3-BasicInfo\RangeFilt.xaml.cs">
       <DependentUpon>RangeFilt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="No4-Stretch+OIF\ContrastStretch.xaml.cs">
-      <DependentUpon>ContrastStretch.xaml</DependentUpon>
-    </Compile>
     <Compile Include="No2-Interleave\ConvertWindow.xaml.cs">
       <DependentUpon>ConvertWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="No3-BasicInfo\GLCM.xaml.cs">
-      <DependentUpon>GLCM.xaml</DependentUpon>
     </Compile>
     <Compile Include="No3-BasicInfo\Histogram.cs">
       <SubType>UserControl</SubType>
@@ -94,8 +94,26 @@
     <Compile Include="Basic\FileInfo.xaml.cs">
       <DependentUpon>FileInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="No4-Stretch+OIF\ContrastStr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No4-Stretch+OIF\ContrastStr.Designer.cs">
+      <DependentUpon>ContrastStr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="No4-Stretch+OIF\HistoMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No4-Stretch+OIF\HistoMatch.Designer.cs">
+      <DependentUpon>HistoMatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="No4-Stretch+OIF\OIF.xaml.cs">
       <DependentUpon>OIF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No6-KT+HSI\BandMath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No6-KT+HSI\BandMath.Designer.cs">
+      <DependentUpon>BandMath.cs</DependentUpon>
     </Compile>
     <Compile Include="No6-KT+HSI\HSI.xaml.cs">
       <DependentUpon>HSI.xaml</DependentUpon>
@@ -141,17 +159,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="No4-Stretch+OIF\ContrastStretch.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="No2-Interleave\ConvertWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="No3-BasicInfo\GLCM.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Basic\Loading.xaml">
       <SubType>Designer</SubType>
@@ -199,8 +209,20 @@
     <EmbeddedResource Include="Basic\FileChoose.resx">
       <DependentUpon>FileChoose.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="No3-BasicInfo\GLCM.resx">
+      <DependentUpon>GLCM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No4-Stretch+OIF\ContrastStr.resx">
+      <DependentUpon>ContrastStr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No4-Stretch+OIF\HistoMatch.resx">
+      <DependentUpon>HistoMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No6-KT+HSI\BandMath.resx">
+      <DependentUpon>BandMath.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="No7-Conv\Sharp.resx">
       <DependentUpon>Sharp.cs</DependentUpon>
