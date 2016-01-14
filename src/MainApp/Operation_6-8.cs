@@ -71,16 +71,96 @@ namespace RsNoAMain
                 }
             }
 
-            AddNewPic(tmp, cho.FileName + "(自定义卷积核)");
+            AddNewPic(tmp, cho.FileName + "(自定义卷积核)", false);
             _loading.Abort();
+        }
+
+        private void ProcessSmooth(int h, int l, int o, int m)
+        {
+            var cho = _image[_fChoose.ChoosedFile];
+
+            byte[,,] res = null;
+            string type = "";
+            switch (m)
+            {
+                case 0:
+                    res = new RS_Lib.Mean(cho).MeanFilter;
+                    type = "-均值滤波";
+                    break;
+
+                case 1:
+                    res = new RS_Lib.Median(cho, h, l).MedianData;
+                    type = "-中位数滤波";
+                    break;
+
+                case 2:
+                    res = new RS_Lib.GaussLow(cho, h, l, o).GaussLowData;
+                    type = "-高斯低通滤波";
+                    break;
+
+                case 3:
+                    res = new RS_Lib.Grad(cho).GradData;
+                    type = "-梯度倒数加权滤波";
+                    break;
+            }
+            
+            AddNewPic(res, cho.FileName + type, false);
         }
 
         private void ButtonSmooth_Click(object sender, RoutedEventArgs e)
         {
+            if (!CheckImage()) return;
+
             var a = new RS_Diag.Smooth();
             if (a.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
+            _loading.Start();
 
+            ProcessSmooth(a.Hang, a.Lie, a.O, a.Method);
+
+            _loading.Abort();
+        }
+
+        private void ProcessSharp(int m)
+        {
+            var cho = _image[_fChoose.ChoosedFile];
+
+            byte[,,] res = null;
+            string type = "";
+
+            switch (m)
+            {
+                case 0:
+                    res = new Robert(cho).RobertData;
+                    type = "-罗伯特锐化最终图";
+                    break;
+
+                case 1:
+                    res = new Sobel(cho).SobelData;
+                    type = "-Sobel锐化最终图";
+                    break;
+
+                case 2:
+                    res = new Lap(cho).Lapla;
+                    type = "-拉普拉斯锐化最终图";
+                    break;
+            }
+
+            AddNewPic(res, cho.FileName + type, false);
+        }
+
+        private void ButtonSharp_Click(object sender, RoutedEventArgs e)
+        {
+            if (!CheckImage()) return;
+            
+            var a = new RS_Diag.Sharp();
+            if (a.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+            _loading.Start();
+
+            ProcessSharp(a.Method);
+
+            _loading.Abort();
         }
 
     }

@@ -61,20 +61,6 @@
                     </fluent:Button>
 
                 </fluent:RibbonGroupBox>
-
-                <fluent:RibbonGroupBox Header="图像合并工具" >
-                    <fluent:Button Name="MergeImage" KeyTip="3"
-                                   Header="合并BSQ图像"
-                                   Icon=".\Images\norm\32\merge.png"
-                                   LargeIcon=".\Images\norm\64\merge.png" 
-                                   Click="MergeImage_Click">
-                        <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="遥感图像合并"
-                                              Image=".\Images\norm\64\help.png"
-                                              Text="特别注意仅支持BSQ文件合并！"/>
-                        </fluent:Button.ToolTip>
-                    </fluent:Button>
-                </fluent:RibbonGroupBox>
                 
                 <fluent:RibbonGroupBox Header="图像显示">
                     <fluent:Button Name="ShowImg" KeyTip="2"
@@ -111,7 +97,17 @@
                                               Text="不要玩坏程序！"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-
+                    <fluent:Button Name="MergeImage" KeyTip="2"
+                                   Header="合并BSQ图像"
+                                   Icon=".\Images\norm\32\merge.png"
+                                   LargeIcon=".\Images\norm\64\merge.png" 
+                                   Click="MergeImage_Click">
+                        <fluent:Button.ToolTip>
+                            <fluent:ScreenTip Title="遥感图像合并"
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="特别注意仅支持BSQ文件合并！"/>
+                        </fluent:Button.ToolTip>
+                    </fluent:Button>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="图像变换">
@@ -218,7 +214,7 @@
                                               Text="掩膜平滑未完成"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ButtonSharp" KeyTip="1" Header="图像锐化" >
+                    <fluent:Button Name="ButtonSharp" KeyTip="1" Header="图像锐化" Click="ButtonSharp_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="图像的锐化"
                                               Image=".\Images\norm\64\help.png"
@@ -269,6 +265,7 @@
                             <xcad:LayoutAnchorable Title="说明" CanAutoHide="False" CanHide="False" CanClose="False">
                                 <StackPanel>
                                     <TextBox Text="UI By 张宜弛" IsReadOnly="True"/>
+                                    <TextBox Text="A组同学共同完成" IsReadOnly="True"/>
                                 </StackPanel>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorGroup>

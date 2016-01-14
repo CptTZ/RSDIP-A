@@ -172,12 +172,17 @@ namespace RsNoAMain
         {
             if (!CheckImage()) return;
 
-            SaveFileDialog sfd = new SaveFileDialog {Filter = "图片名(*)|*.*"};
+            var cho = _image[_fChoose.ChoosedFile];
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "图片名(*)|*.*"
+            };
             if (sfd.ShowDialog() != true) return;
 
             try
             {
-                _image[_fChoose.ChoosedFile].SavePic(sfd.FileName);
+                cho.SavePic(sfd.FileName);
             }
             catch (Exception ex)
             {
@@ -185,5 +190,6 @@ namespace RsNoAMain
                 return;
             }
         }
+        
     }
 }

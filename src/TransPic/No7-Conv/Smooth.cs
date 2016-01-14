@@ -30,6 +30,7 @@ namespace RS_Diag
             if (int.Parse(numHang.Value.ToString()) < 3)
                 numHang.Value = 3;
             this.Hang = int.Parse(numHang.Value.ToString());
+            UpdateKernel();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -51,14 +52,24 @@ namespace RS_Diag
             {
                 textBox2.Visible = true;
                 MessageBox.Show("请输入方差，用于控制平滑度", "TonyZ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                numHang.Enabled = true;
+                numLie.Enabled = true;
+            }
+            else if (comboBox1.SelectedIndex == 0| comboBox1.SelectedIndex == 3)
+            {
+                numHang.Enabled = false;
+                numLie.Enabled = false;
             }
             else
             {
                 textBox2.Visible = false;
+                numHang.Enabled = true;
+                numLie.Enabled = true;
             }
+            UpdateKernel();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void UpdateKernel()
         {
             switch (comboBox1.SelectedIndex)
             {
@@ -73,7 +84,7 @@ namespace RS_Diag
                         MessageBox.Show("输入错误", "Tony", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
-                    
+
                     break;
 
                 case 0:
@@ -96,6 +107,12 @@ namespace RS_Diag
             if (int.Parse(numLie.Value.ToString()) < 3)
                 numLie.Value = 3;
             this.Lie = int.Parse(numLie.Value.ToString());
+            UpdateKernel();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            UpdateKernel();
         }
     }
 }

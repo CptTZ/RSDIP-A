@@ -8,52 +8,93 @@ namespace RS_Lib
     public class Grad
     {
         public byte[,,] GradData { get; private set; }
-
-        private Conv[] _data;
+        
+        private readonly byte[,,] _oriData;
         private readonly RsImage _img;
-        private readonly int _o, _x, _y;
 
         /// <summary>
-        /// 梯度倒数加权
+        /// 梯度倒数加权-3*3
         /// </summary>
-        public Grad(RsImage r, int x, int y, int o)
+        public Grad(RsImage r)
         {
             this._img = r;
-            CheckSize(x, y, o);
-
-            this._o = o;
-            this._x = x;
-            this._y = y;
-
-            MakeKernel();
+            this._oriData = r.GetPicData();
 
             GradData = new byte[r.BandsCount, r.Lines, r.Samples];
-
+            ScanHoleImg();
         }
 
-        private double[,] MakeKernel()
+        private void ScanHoleImg()
         {
-            double[,] kern = new double[_x, _y];
-
-            for (int i = 0; i < _x; i++)
+            for (int b = 0; b < _img.BandsCount; b++)
             {
-                for (int j = 0; j < _y; j++)
+                for (int j = 0; j < _img.Lines; j++)
                 {
-                    
+                    for (int k = 0; k < _img.Samples; k++)
+                    {
+                        double[,] kern; byte[,] part;
+
+                        MakeKernel(b, j, k, out kern, out part);
+                        double sum = 0;
+
+                        for (int xx = 0; xx < 3; xx++)
+                        {
+                            for (int yy = 0; yy < 3; yy++)
+                            {
+                                sum += part[xx, yy]*kern[xx, yy];
+                            }
+                        }
+
+                        if (sum > 245.5)
+                        {
+                            sum = 245.5;
+                        }
+
+                        GradData[b, j, k] = (byte) (sum + 0.5);
+                    }
                 }
             }
-
-            return kern;
         }
-
-        private void CheckSize(int kx, int ky, int o)
+        
+        private void MakeKernel(int b, int x, int y, out double[,] kern, out byte[,] res)
         {
-            if (kx < 3 || kx % 2 == 0 || ky < 3 || ky % 2 == 0 || o < 0)
+            kern = new double[3, 3];
+            res = new byte[3, 3];
+            double total = 0;
+
+            for (int i = x - 1; i <= x + 1; i++) 
             {
-                throw new ArgumentException("高斯低通滤波区域必须为奇数，且大于3");
+                for (int j = y - 1; j <= y + 1; j++)
+                {
+                    byte oriV = isInRange(i, j) ? _oriData[b, i, j] : (byte) 0;
+                    res[i + 1 - x, j + 1 - y] = oriV;
+                    var tmp = DaoShuFenZhiYi(oriV, _oriData[b, x, y]);
+                    kern[i + 1 - x, j + 1 - y] = tmp;
+                    total += tmp;
+                }
             }
+            total *= 2;
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    kern[i, j] = kern[i, j] / total;
+                }
+            }
+            kern[1, 1] = 0.5;
         }
 
+        private double DaoShuFenZhiYi(byte a, byte b)
+        {
+            if (a - b == 0) return 0;
+            return 1.0 / Math.Abs(a - b);
+        }
+        
 
+        private bool isInRange(int i, int j)
+        {
+            return i >= 0 && j >= 0 && i < _oriData.GetLength(1) && j < _oriData.GetLength(2);
+        }
     }
 }

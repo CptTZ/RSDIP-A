@@ -39,6 +39,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -99,6 +102,12 @@
     </Compile>
     <Compile Include="No6-KT+HSI\KT.xaml.cs">
       <DependentUpon>KT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="No7-Conv\Sharp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="No7-Conv\Sharp.Designer.cs">
+      <DependentUpon>Sharp.cs</DependentUpon>
     </Compile>
     <Compile Include="No7-Conv\Smooth.cs">
       <SubType>Form</SubType>
@@ -192,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="No3-BasicInfo\Histogram.resx">
       <DependentUpon>Histogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="No7-Conv\Sharp.resx">
+      <DependentUpon>Sharp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="No7-Conv\Smooth.resx">
       <DependentUpon>Smooth.cs</DependentUpon>
