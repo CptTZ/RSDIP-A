@@ -137,12 +137,10 @@ namespace RsNoAMain
             }
             catch (Exception ex)
             {
-                _loading.Abort();
                 MessageBox.Show("打开失败！\n" + ex.Message, "失败", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            _loading.Abort();
+            finally { _loading.Abort(); }
             
             _fChoose.AddByFilePath(_image[_image.Count - 1].GetFilePath());
         }
