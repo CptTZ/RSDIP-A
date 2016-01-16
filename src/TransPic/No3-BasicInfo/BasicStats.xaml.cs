@@ -37,7 +37,7 @@ namespace RS_Diag
         public StatStdDev(String a, double b)
         {
             BandName = a;
-            DevValue = b;
+            DevValue = Math.Round(b, 4);
         }
     }
 
@@ -46,7 +46,7 @@ namespace RS_Diag
         public StatAve(String a, double b)
         {
             BandName = a;
-            AveValue = b;
+            AveValue = Math.Round(b, 4);
         }
 
         public String BandName { get; set; }
@@ -71,10 +71,7 @@ namespace RS_Diag
 
         private readonly ObservableCollection<StatStdDev> _statDev =
             new ObservableCollection<StatStdDev>();
-
-        private readonly ObservableCollection<StatsName> _statName =
-            new ObservableCollection<StatsName>();
-
+        
         // private ObservableCollection<StatsCorr>[] _statCorr;
 
         public BasicStats(RS_Lib.RsImage p)

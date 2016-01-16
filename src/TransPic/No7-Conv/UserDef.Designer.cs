@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDef));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numLie = new System.Windows.Forms.NumericUpDown();
             this.numHang = new System.Windows.Forms.NumericUpDown();
@@ -180,10 +179,11 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(546, 554);
             this.Name = "UserDef";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "用户自定义模板";
             this.groupBox1.ResumeLayout(false);

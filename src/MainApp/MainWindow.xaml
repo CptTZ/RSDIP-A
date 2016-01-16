@@ -22,7 +22,7 @@
                         <fluent:Button Name="CloseAllFile"
                                        Header="关闭所有打开文件" Click="CloseAllFile_Click"
                                        />
-                        <fluent:Button Header="--------------"/>
+                        <fluent:Button Header="--------------" IsEnabled="False"/>
                         <fluent:Button Name="ButtonAbout"
                                        Header="关于"
                                        Icon=".\Images\norm\32\help.png"
