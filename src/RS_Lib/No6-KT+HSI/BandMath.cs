@@ -77,7 +77,10 @@ namespace RS_Lib
 
         private void CheckInput()
         {
-            if (_img.Any(t => t.GetLength(0) != t.GetLength(1)))
+            int x = _img[0].GetLength(0),
+                y = _img[0].GetLength(1);
+
+            if (_img.Any(t => t.GetLength(0) != x | t.GetLength(1) != y))
             {
                 throw new ArgumentException("参与波段运算的图像，其长宽必须一样！");
             }
