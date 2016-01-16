@@ -32,8 +32,7 @@ namespace RsNoAMain
                     }
                 }
 
-                AddNewPic(tmp, "Band Math结果", false);
-
+                AddNewPic(tmp, "-Band Math结果(" + a.StateMent + ")", false);
             }
             catch (Exception ex)
             {
@@ -42,8 +41,8 @@ namespace RsNoAMain
             finally
             {
                 _loading.Abort();
+                a.Dispose();
             }
-
         }
 
         private void HSI_Click(object sender, RoutedEventArgs e)
@@ -105,7 +104,7 @@ namespace RsNoAMain
                 }
             }
 
-            AddNewPic(tmp, cho.FileName + "(自定义卷积核)", false);
+            AddNewPic(tmp, cho.FileName + "-自定义卷积核", false);
             _loading.Abort();
         }
 

@@ -14,9 +14,24 @@ namespace RsNoAMain
     {
         private readonly DockingManager _dManager;
 
+        public static bool dockManagerHasInstanced { get; private set; }
+
         public DockPage(DockingManager t)
         {
+            if (dockManagerHasInstanced == true)
+            {
+                throw new ApplicationException("Dock管理应为单例模式！");
+            }
+
+            dockManagerHasInstanced = true;
             _dManager = t;
+        }
+
+        public void CloseAllDocument()
+        {
+            var docPane = _dManager.Layout.Descendents().OfType<LayoutDocumentPane>().First();
+
+            docPane.Children.Clear();
         }
 
         /// <summary>
@@ -35,7 +50,7 @@ namespace RsNoAMain
                 ToolTip = to,
                 Content = new WindowsFormsHost {Child = uc},
                 IsSelected = true,
-                CanAutoHide = false
+                CanAutoHide = true
             };
 
             leftPane.Children.Add(doc);

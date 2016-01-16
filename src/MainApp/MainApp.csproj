@@ -138,18 +138,6 @@
   <ItemGroup>
     <Resource Include="Images\norm\32\application-help.png" />
     <Resource Include="Images\norm\32\arrow_right.png" />
-    <Resource Include="Images\norm\32\clipboard_cut.png" />
-    <Resource Include="Images\norm\32\clipboard_paste.png" />
-    <Resource Include="Images\norm\32\Disabled\application-help.png" />
-    <Resource Include="Images\norm\32\Disabled\arrow_right.png" />
-    <Resource Include="Images\norm\32\Disabled\clipboard_cut.png" />
-    <Resource Include="Images\norm\32\Disabled\clipboard_paste.png" />
-    <Resource Include="Images\norm\32\Disabled\document-ok.png" />
-    <Resource Include="Images\norm\32\Disabled\document_text.png" />
-    <Resource Include="Images\norm\32\Disabled\folder.png" />
-    <Resource Include="Images\norm\32\Disabled\help.png" />
-    <Resource Include="Images\norm\32\Disabled\internet_browse.png" />
-    <Resource Include="Images\norm\32\Disabled\windows.png" />
     <Resource Include="Images\norm\32\document-ok.png" />
     <Resource Include="Images\norm\32\document_text.png" />
     <Resource Include="Images\norm\32\folder.png" />
@@ -161,18 +149,6 @@
     <Resource Include="Images\norm\32\windows.png" />
     <Resource Include="Images\norm\64\application-help.png" />
     <Resource Include="Images\norm\64\arrow_right.png" />
-    <Resource Include="Images\norm\64\clipboard_cut.png" />
-    <Resource Include="Images\norm\64\clipboard_paste.png" />
-    <Resource Include="Images\norm\64\Disabled\application-help.png" />
-    <Resource Include="Images\norm\64\Disabled\arrow_right.png" />
-    <Resource Include="Images\norm\64\Disabled\clipboard_cut.png" />
-    <Resource Include="Images\norm\64\Disabled\clipboard_paste.png" />
-    <Resource Include="Images\norm\64\Disabled\document-ok.png" />
-    <Resource Include="Images\norm\64\Disabled\document_text.png" />
-    <Resource Include="Images\norm\64\Disabled\folder.png" />
-    <Resource Include="Images\norm\64\Disabled\help.png" />
-    <Resource Include="Images\norm\64\Disabled\internet_browse.png" />
-    <Resource Include="Images\norm\64\Disabled\windows.png" />
     <Resource Include="Images\norm\64\document-ok.png" />
     <Resource Include="Images\norm\64\document_text.png" />
     <Resource Include="Images\norm\64\folder.png" />
@@ -182,38 +158,6 @@
     <Resource Include="Images\norm\64\merge.png" />
     <Resource Include="Images\norm\64\transform.png" />
     <Resource Include="Images\norm\64\windows.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_add.mask.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_add.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_gear.mask.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_gear.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_help.mask.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_help.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_remove.mask.png" />
-    <Resource Include="Images\overlay\32\Disabled\ov_remove.png" />
-    <Resource Include="Images\overlay\32\ov_add.mask.png" />
-    <Resource Include="Images\overlay\32\ov_add.png" />
-    <Resource Include="Images\overlay\32\ov_gear.mask.png" />
-    <Resource Include="Images\overlay\32\ov_gear.png" />
-    <Resource Include="Images\overlay\32\ov_help.mask.png" />
-    <Resource Include="Images\overlay\32\ov_help.png" />
-    <Resource Include="Images\overlay\32\ov_remove.mask.png" />
-    <Resource Include="Images\overlay\32\ov_remove.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_add.mask.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_add.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_gear.mask.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_gear.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_help.mask.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_help.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_remove.mask.png" />
-    <Resource Include="Images\overlay\64\Disabled\ov_remove.png" />
-    <Resource Include="Images\overlay\64\ov_add.mask.png" />
-    <Resource Include="Images\overlay\64\ov_add.png" />
-    <Resource Include="Images\overlay\64\ov_gear.mask.png" />
-    <Resource Include="Images\overlay\64\ov_gear.png" />
-    <Resource Include="Images\overlay\64\ov_help.mask.png" />
-    <Resource Include="Images\overlay\64\ov_help.png" />
-    <Resource Include="Images\overlay\64\ov_remove.mask.png" />
-    <Resource Include="Images\overlay\64\ov_remove.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RS_Lib\RS_Lib.csproj">
@@ -258,6 +202,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\norm\64\statistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\64\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\32\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\32\rgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\64\rgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\32\hsi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\norm\64\hsi.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

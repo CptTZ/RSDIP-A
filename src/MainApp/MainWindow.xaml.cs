@@ -30,10 +30,28 @@ namespace RsNoAMain
         {
             InitializeComponent();
             _dock = new DockPage(this.DockingManager);
+
             _dock.AddFormLeft(_fChoose, "图像选择");
         }
 
         #region 不会动的区域
+
+        private void CloseAllFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (_image.Count == 0)
+            {
+                MessageBox.Show("您未打开任何图像！", "提示", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            var s = MessageBox.Show("确定是否要关闭所有已打开的文件？\n此选项包括存于内存中的文件！", "提示",
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (s != MessageBoxResult.Yes) return;
+
+            _dock.CloseAllDocument();
+            _fChoose.RemoveAll();
+            _image.Clear();
+        }
 
         /// <summary>
         /// 检查是否可以进行图像处理

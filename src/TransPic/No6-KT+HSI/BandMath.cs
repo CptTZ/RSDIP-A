@@ -25,6 +25,9 @@ namespace RS_Diag
         {
             this._img = img;
             InitializeComponent();
+            CtrlStr = new List<string>();
+            Data = new List<byte[,]>();
+
             _tot = InitDGV();
         }
 
@@ -42,16 +45,19 @@ namespace RS_Diag
                     _dat.Add(tt.GetPicData(i + 1));
                 }
             }
-
+            dataGridView1.AutoResizeColumns();
             return count;
         }
 
         private bool Calc()
         {
-            CtrlStr = new List<string>();
-            Data = new List<byte[,]>(); 
+            if (StateMent.Contains('='))
+            {
+                MessageBox.Show("请不要输入等于号！", "TonyZ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
 
-            for (int i = 1; i < _tot ; i++)
+            for (int i = 1; i <= _tot ; i++)
             {
                 if (StateMent.Contains("b" + i.ToString()))
                 {

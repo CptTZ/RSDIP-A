@@ -46,7 +46,7 @@ namespace RS_Lib
                         double b = corr[i, j] + corr[j, k] + corr[i, k];
 
                         double result = a/b;
-                        line[1] = Math.Round(result, 5).ToString();
+                        line[1] = Math.Round(result, 3).ToString();
                         ResultOIF.Add(line);
                     }
                 }

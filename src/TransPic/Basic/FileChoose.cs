@@ -23,12 +23,7 @@ namespace RS_Diag.Basic
                 return files.SelectedNode.Index;
             }
         }
-
-        public void RemoveByMemoryFileName(string n)
-        {
-            files.Nodes.RemoveByKey("Memory: " + n);
-        }
-
+        
         public void AddByMemoryFileName(string n)
         {
             files.Nodes.Add("Memory: " + n);
@@ -42,9 +37,9 @@ namespace RS_Diag.Basic
                 string info = t.Name + ": " + t.Directory;
                 files.Nodes.Add(info);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message, "Runtime Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -53,18 +48,9 @@ namespace RS_Diag.Basic
             files.Nodes.RemoveAt(i);   
         }
 
-        public void RemoveByFilePath(string n)
+        public void RemoveAll()
         {
-            try
-            {
-                System.IO.FileInfo t = new System.IO.FileInfo(n);
-                string info = t.Name + ": " + t.Directory;
-                files.Nodes.RemoveByKey(info);
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            files.Nodes.Clear();
         }
 
         public FileChoose()

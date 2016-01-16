@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BandMath));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.c1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -49,6 +49,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c1,
@@ -59,6 +60,22 @@
             this.dataGridView1.RowTemplate.Height = 37;
             this.dataGridView1.Size = new System.Drawing.Size(579, 217);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // c1
+            // 
+            this.c1.HeaderText = "代数名";
+            this.c1.MinimumWidth = 100;
+            this.c1.Name = "c1";
+            this.c1.ReadOnly = true;
+            this.c1.Width = 150;
+            // 
+            // c2
+            // 
+            this.c2.HeaderText = "对应波段";
+            this.c2.MinimumWidth = 150;
+            this.c2.Name = "c2";
+            this.c2.ReadOnly = true;
+            this.c2.Width = 250;
             // 
             // groupBox1
             // 
@@ -97,7 +114,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(64, 367);
+            this.button1.Location = new System.Drawing.Point(78, 367);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 51);
             this.button1.TabIndex = 3;
@@ -115,22 +132,6 @@
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // c1
-            // 
-            this.c1.HeaderText = "代数名";
-            this.c1.MinimumWidth = 100;
-            this.c1.Name = "c1";
-            this.c1.ReadOnly = true;
-            this.c1.Width = 150;
-            // 
-            // c2
-            // 
-            this.c2.HeaderText = "对应波段";
-            this.c2.MinimumWidth = 150;
-            this.c2.Name = "c2";
-            this.c2.ReadOnly = true;
-            this.c2.Width = 250;
             // 
             // BandMath
             // 

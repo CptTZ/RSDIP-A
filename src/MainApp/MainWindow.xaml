@@ -19,6 +19,10 @@
             <fluent:Ribbon.Menu>
                 <fluent:Backstage Header="菜单" KeyTip="Z">
                     <fluent:BackstageTabControl Height="Auto">
+                        <fluent:Button Name="CloseAllFile"
+                                       Header="关闭所有打开文件" Click="CloseAllFile_Click"
+                                       />
+                        <fluent:Button Header="--------------"/>
                         <fluent:Button Name="ButtonAbout"
                                        Header="关于"
                                        Icon=".\Images\norm\32\help.png"
@@ -38,45 +42,53 @@
                                    LargeIcon=".\Images\norm\64\folder.png" 
                                    Click="OpenHeaderFile_Click">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="图像文件"
+                            <fluent:ScreenTip Title="打开操作"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="包括HDR或者JPG/BMP文件(后者只支持彩色)"/>
+                                              Text="可以打开包括HDR或者JPG/BMP文件(后者只支持彩色,部分图片显示有问题)"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="SaveFile" KeyTip="1"
-                                   Header="保存图像" Click="SaveFile_Click">
+                    <fluent:Button Name="SaveFile" KeyTip="2"
+                                   Header="保存图像" Click="SaveFile_Click"
+                                   Icon=".\Images\norm\32\save.png"
+                                   LargeIcon=".\Images\norm\64\save.png">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="保存为HDR"
+                            <fluent:ScreenTip Title="保存图像到文件"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="格式为ENVI Header格式"/>
+                                              Text="格式为ENVI Standard（BSQ）格式"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ShowImgInfo" KeyTip="1"
-                                   Header="图像元信息" Click="ShowImgInfo_Click">
+                    <fluent:Button Name="ShowImgInfo" KeyTip="3" 
+                                   Header="图像元信息" Click="ShowImgInfo_Click"
+                                   Icon=".\Images\norm\32\document_text.png"
+                                   LargeIcon=".\Images\norm\64\document_text.png">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="HDR文件"
+                            <fluent:ScreenTip Title="元信息查看"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="查看最基本的图像信息"/>
+                                              Text="查看基本的图像信息，以供参考"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
 
                 </fluent:RibbonGroupBox>
                 
                 <fluent:RibbonGroupBox Header="图像显示">
-                    <fluent:Button Name="ShowImg" KeyTip="2"
-                                   Header="RGB显示图像" Click="ShowImg_Click">
+                    <fluent:Button Name="ShowImg" KeyTip="4"
+                                   Header="RGB显示图像" Click="ShowImg_Click"
+                                   Icon=".\Images\norm\32\rgb.png"
+                                   LargeIcon=".\Images\norm\64\rgb.png">
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="显示图像"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="根据图像信息进行显示合成，可选择进行2%拉伸模式"/>
+                                              Text="根据图像波段进行显示合成，可选择进行2%拉伸模式，也可以选择导出图像到PNG文件"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button KeyTip="3"
-                                   Header="HSI显示图像" Click="HSI_Click">
+                    <fluent:Button KeyTip="5"
+                                   Header="HSI显示图像" Click="HSI_Click"
+                                   Icon=".\Images\norm\32\hsi.png"
+                                   LargeIcon=".\Images\norm\64\hsi.png">
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像HSI显示"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="HSI(HSV)显示"/>
+                                              Text="HSI显示图像，需要先指定图像的3个波段作为基础"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
@@ -85,16 +97,16 @@
 
 
             <fluent:RibbonTabItem Header="图像处理" KeyTip="B">
-                <fluent:RibbonGroupBox Header="格式转换" >
+                <fluent:RibbonGroupBox Header="格式工具" >
                     <fluent:Button Name="ButtonConvert" KeyTip="1"
-                                   Header="开始转换"
+                                   Header="格式转换"
                                    Icon=".\Images\norm\32\transform.png"
                                    LargeIcon=".\Images\norm\64\transform.png" 
                                    Click="ButtonConvert_Click">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="转换注意"
+                            <fluent:ScreenTip Title="图像格式转换"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="不要玩坏程序！"/>
+                                              Text="支持原图像转为BSQ/BIL/BIP格式"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                     <fluent:Button Name="MergeImage" KeyTip="2"
@@ -103,26 +115,27 @@
                                    LargeIcon=".\Images\norm\64\merge.png" 
                                    Click="MergeImage_Click">
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="遥感图像合并"
+                            <fluent:ScreenTip Title="图像合并"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="特别注意仅支持BSQ文件合并！"/>
+                                              Text="仅支持BSQ文件合并，不限制波段数"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
 
                 <fluent:RibbonGroupBox Header="图像变换">
-                    <fluent:Button KeyTip="1"
+                    <fluent:Button KeyTip="3"
                                    Header="缨帽变换" Click="KT_Click">
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感Landsat图像的缨帽变换"
-                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                                              Image=".\Images\norm\64\help.png"
+                                              Text="仅支持对原始未修改（7波段）的Landsat图像进行变换"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button KeyTip="2" Name="BandMath"
+                    <fluent:Button KeyTip="4" Name="BandMath"
                                    Header="波段计算器" Click="BandMath_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="波段计算器"
-                                Image=".\Images\norm\64\help.png" Text="支持大部分表达式" />
+                                Image=".\Images\norm\64\help.png" Text="支持大部分表达式，但是目前Bug很多，仅供演示" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
@@ -133,7 +146,7 @@
                                    Header="对比度拉伸" Click="ButtonConSt_Click"  >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像的对比度拉伸"
-                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                                Image=".\Images\norm\64\help.png" Text="设置对比度范围进行拉伸" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
 
@@ -141,7 +154,7 @@
                                    Header="直方图均衡化" Click="Button_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="遥感图像的直方图快速均衡化"
-                                Image=".\Images\norm\64\help.png" Text="很好用！" />
+                                Image=".\Images\norm\64\help.png" Text="选择图像后，可以生成经过均衡的新图像" />
                         </fluent:Button.ToolTip>
                     </fluent:Button>
 
@@ -160,7 +173,7 @@
                                    Icon=".\Images\norm\32\histogram.png"
                                    LargeIcon=".\Images\norm\64\histogram.png"
                                    Header="累计直方图" Click="ButtonAccHistogram_Click" />
-                    <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
+                    <!--Bug <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
                                    Icon=".\Images\norm\32\histogram.png"
                                    LargeIcon=".\Images\norm\64\histogram.png"
                                    Header="直方图规定化" Click="ButtonUniHistogram_Click" >
@@ -169,11 +182,11 @@
                                               Image=".\Images\norm\64\help.png"
                                               Text="计算两个波段的联合直方图"/>
                         </fluent:Button.ToolTip>
-                    </fluent:Button>
+                    </fluent:Button>-->
                 </fluent:RibbonGroupBox>
                 
-                <fluent:RibbonGroupBox Header="图像统计量" KeyTip="b">
-                    <fluent:Button Name="ButtonBasicStats" KeyTip="1"
+                <fluent:RibbonGroupBox Header="图像统计量" >
+                    <fluent:Button Name="ButtonBasicStats" KeyTip="4"
                                    Icon=".\Images\norm\32\statistics.png"
                                    LargeIcon=".\Images\norm\32\statistics.png"
                                    Header="基本统计量" Click="ButtonBasicStats_Click" >
@@ -183,7 +196,7 @@
                                               Text="包括平均值，方差，相关系数与协方差"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ButtonContrast" KeyTip="2"
+                    <fluent:Button Name="ButtonContrast" KeyTip="5"
                                    Icon=".\Images\norm\32\contrast.png"
                                    LargeIcon=".\Images\norm\64\contrast.png"
                                    Header="对比度" Click="ButtonContrast_Click">
@@ -193,49 +206,49 @@
                                               Text="绘制对比度与波段关系图"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ButtonOif" KeyTip="3"
+                    <fluent:Button Name="ButtonOif" KeyTip="6"
                                    Header="OIF计算" Click="ButtonOif_Click">
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="各波段OIF计算"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="计算不同合成情况下OIF数值"/>
+                                              Text="计算不同合成情况下OIF数值，越大越好"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
                 
-                <fluent:RibbonGroupBox Header="纹理分析" KeyTip="c">
-                    <fluent:Button Name="ButtonGLCM" KeyTip="1"
+                <fluent:RibbonGroupBox Header="纹理分析" >
+                    <fluent:Button Name="ButtonGLCM" KeyTip="7"
                                    Header="灰度共生矩阵" Click="ButtonGLCM_Click" />
-                    <fluent:Button Name="ButtonRangeFilt" KeyTip="2"
+                    <fluent:Button Name="ButtonRangeFilt" KeyTip="8"
                                    Header="极差纹理矩阵" Click="ButtonRangeFilt_Click" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="平滑锐化" KeyTip="D">
 
-                <fluent:RibbonGroupBox Header="图像平滑与锐化" KeyTip="a">
+                <fluent:RibbonGroupBox Header="图像平滑与锐化" >
                     <fluent:Button Name="ButtonSmooth" KeyTip="1" Header="图像平滑" Click="ButtonSmooth_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="图像的平滑"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="掩膜平滑未完成"/>
+                                              Text="主要包括4种方法"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
-                    <fluent:Button Name="ButtonSharp" KeyTip="1" Header="图像锐化" Click="ButtonSharp_Click" >
+                    <fluent:Button Name="ButtonSharp" KeyTip="2" Header="图像锐化" Click="ButtonSharp_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="图像的锐化"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="三种方法"/>
+                                              Text="主要包括3种方法，不能指定卷积核，直接输出最终的结果"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
 
-                <fluent:RibbonGroupBox Header="其它" KeyTip="c">
-                    <fluent:Button Name="ButtonCustom" KeyTip="1" Header="用户自定义卷积核" Click="ButtonCustom_Click" >
+                <fluent:RibbonGroupBox Header="其它">
+                    <fluent:Button Name="ButtonCustom" KeyTip="3" Header="用户自定义卷积核" Click="ButtonCustom_Click" >
                         <fluent:Button.ToolTip>
                             <fluent:ScreenTip Title="用户自定义卷积核"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="可以不为正方形，不过必须为奇数"/>
+                                              Text="可以任意大小（不小于3），不过卷积核必须为奇数"/>
                         </fluent:Button.ToolTip>
                     </fluent:Button>
                 </fluent:RibbonGroupBox>
@@ -245,7 +258,7 @@
         </fluent:Ribbon>
 
         <!-- 主界面 -->
-        <xcad:DockingManager Language="zh-CN" Name="DockingManager" Grid.Row="1">
+        <xcad:DockingManager Name="DockingManager" Grid.Row="1">
             <xcad:LayoutRoot>
                 <xcad:LayoutPanel Orientation="Horizontal">
                     
@@ -256,7 +269,7 @@
 
                     <!-- 文档界面 -->
                     <xcad:LayoutDocumentPaneGroup>
-                        <xcad:LayoutDocumentPane/>
+                        <xcad:LayoutDocumentPane />
                     </xcad:LayoutDocumentPaneGroup>
 
                 </xcad:LayoutPanel>
@@ -268,12 +281,13 @@
                             <xcad:LayoutAnchorable Title="说明" CanAutoHide="False" CanHide="False" CanClose="False">
                                 <StackPanel>
                                     <TextBox Text="UI By 张宜弛" IsReadOnly="True"/>
-                                    <TextBox Text="A组同学共同完成" IsReadOnly="True"/>
+                                    <TextBox Text="算法由A组同学共同完成" IsReadOnly="True"/>
                                 </StackPanel>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorGroup>
                     </xcad:LayoutAnchorSide>
                 </xcad:LayoutRoot.RightSide>
+                
             </xcad:LayoutRoot>
         </xcad:DockingManager>
         
