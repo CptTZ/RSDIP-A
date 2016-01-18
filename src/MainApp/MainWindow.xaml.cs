@@ -81,7 +81,7 @@ namespace RsNoAMain
             _image.Clear();
             _loading.Abort();
 
-            System.Environment.Exit(0);
+            this.Close();
         }
 
         /// <summary>

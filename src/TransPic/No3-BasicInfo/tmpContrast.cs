@@ -24,8 +24,8 @@ namespace RS_Diag
         {
             Series sr = new Series("对比度")
             {
-                ChartType = SeriesChartType.Spline,
-                IsValueShownAsLabel = true
+                ChartType = SeriesChartType.Column,
+                IsValueShownAsLabel = true,
             };
 
             Title t = new Title("1-" + _data.Length + "波段对比度")
@@ -36,7 +36,7 @@ namespace RS_Diag
 
             for (int i = 1; i <= _data.Length; i++)
             {
-                sr.Points.AddXY(i, _data[i - 1]);
+                sr.Points.AddXY(i, Math.Round(_data[i - 1], 3));
             }
 
             chart1.Series.Add(sr);

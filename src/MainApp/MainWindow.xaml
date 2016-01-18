@@ -173,16 +173,16 @@
                                    Icon=".\Images\norm\32\histogram.png"
                                    LargeIcon=".\Images\norm\64\histogram.png"
                                    Header="累计直方图" Click="ButtonAccHistogram_Click" />
-                    <!--Bug <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
+                     <fluent:Button Name="ButtonUniHistogram" KeyTip="3"
                                    Icon=".\Images\norm\32\histogram.png"
                                    LargeIcon=".\Images\norm\64\histogram.png"
                                    Header="直方图规定化" Click="ButtonUniHistogram_Click" >
                         <fluent:Button.ToolTip>
-                            <fluent:ScreenTip Title="联合直方图"
+                            <fluent:ScreenTip Title="直方图规定化"
                                               Image=".\Images\norm\64\help.png"
-                                              Text="计算两个波段的联合直方图"/>
+                                              Text="将任意两个图像的直方图规定化"/>
                         </fluent:Button.ToolTip>
-                    </fluent:Button>-->
+                    </fluent:Button>-
                 </fluent:RibbonGroupBox>
                 
                 <fluent:RibbonGroupBox Header="图像统计量" >

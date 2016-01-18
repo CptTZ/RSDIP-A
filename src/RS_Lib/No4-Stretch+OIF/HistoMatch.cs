@@ -8,9 +8,8 @@ namespace RS_Lib
     public class HistoMatch
     {
         private readonly byte[,] _oriImg;
-        private readonly int[] _oriAcc;
-        private readonly int[] _targetAcc;
-        private readonly int[] _mappingTable;
+        private readonly int[] _oriAcc, _targetAcc, _mappingTable;
+
 
         public byte[,] MatchedData { get; private set; }
 
@@ -22,53 +21,55 @@ namespace RS_Lib
         public HistoMatch(byte[,] a, byte[,] b)
         {
             _oriImg = a;
-            HistoData dat = new HistoData(a);
-            _oriAcc = dat.GetAccHistogramData();
 
-            dat = new HistoData(b);
-            _targetAcc = dat.GetAccHistogramData();
-
-            _mappingTable = new int[_oriAcc.Length];
-
-            StartMatch();
+            _oriAcc = new HistoData(a).GetAccHistogramData();
+            _targetAcc = new HistoData(b).GetAccHistogramData();
+            _mappingTable = new int[256];
+            
+            GMLMatch();
         }
 
-        private void StartMatch()
+        private void GMLMatch()
         {
-            int k = 0;
+            int[,] srcMin = new int[256, 256];
+            int lastStartY = 0, lastEndY = 0, startY = 0, endY = 0;
+
             for (int i = 0; i < 256; i++)
             {
-                double diffB = 1;
-                for (int j = k; j < 256; j++)
+                for (int j = 0; j < 256; j++)
                 {
-                    double diffA = Math.Abs(_oriAcc[i] - _targetAcc[j]);
-                    // diffA==diffB
-                    if (Math.Abs(diffA - diffB) < 1.0E-08)
-                    {
-                        diffB = diffA;
-                        k = j;
-                    }
-                    else
-                    {
-                        k = (j - 1);
-                        break;
-                    }
+                    srcMin[j, i] = Math.Abs(_oriAcc[i] - _targetAcc[j]);
                 }
-                if (k == 255)
-                {
-                    for (int l = i; l < 256; l++)
-                    {
-                        _mappingTable[l] = k;
+            }
 
+            for (int x = 0; x < 256; x++)
+            {
+                int minValue = srcMin[x, 0];
+
+                for (int y = 0; y < 256; y++)
+                {
+                    if (minValue > srcMin[x, y]) 
+                    {
+                        endY = y;
+                        minValue = srcMin[x, y];
                     }
-                    break;
                 }
-                _mappingTable[i] = k;
+
+                if (startY == lastStartY && endY == lastEndY) continue;
+
+                for (int i = startY; i <= endY; i++)
+                {
+                    _mappingTable[i] = x; 
+                }
+
+                lastStartY = startY;
+                lastEndY = endY;
+                startY = lastEndY + 1;
             }
 
             MakeNewImg();
         }
-
+        
         private void MakeNewImg()
         {
             MatchedData = new byte[_oriImg.GetLength(0), _oriImg.GetLength(1)];

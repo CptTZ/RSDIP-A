@@ -55,7 +55,7 @@ namespace RS_Lib
             // 3*3的范围
             for (int i = x - 1; i <= x + 1; i++) 
             {
-                for (int j = y - 1; j < y + 1; j++)
+                for (int j = y - 1; j <= y + 1; j++)
                 {
                     if (isInRange(i, j) == true)
                     {

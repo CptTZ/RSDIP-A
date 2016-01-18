@@ -8,7 +8,7 @@
 ## Known Issues
 * BandMath calculation problems, don't know how to express the problem.
 * Contrast stretch algorithm problem.
-* Histogram matching algorithm problem.
+* ~~Histogram matching algorithm problem.~~ (Fixed)
 
 ## System Requirements
 * Windows 7 or Above
